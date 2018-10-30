@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @cashier.place %>
+</p>
+
+<p>
+  <strong>Concept:</strong>
+  <%= @cashier.concept %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @cashier.comment %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cashier.name %>
+</p>
+
+<%= link_to 'Edit', edit_cashier_path(@cashier) %> |
+<%= link_to 'Back', cashiers_path %>
