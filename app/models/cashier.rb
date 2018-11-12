@@ -1,6 +1,10 @@
 class Cashier < ApplicationRecord
   has_many :user_cashiers
   has_many :users, through: :user_cashiers
+
+  def total_money_for(name_of_currency)
+    7
+  end
 end
 
 # == Schema Information

@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_28_212800) do
+ActiveRecord::Schema.define(version: 2018_11_12_012723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bills", force: :cascade do |t|
+    t.bigint "currency_id"
+    t.bigint "cashier_id"
+    t.string "name"
+    t.integer "value"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cashier_id"], name: "index_bills_on_cashier_id"
+    t.index ["currency_id"], name: "index_bills_on_currency_id"
+  end
 
   create_table "cashiers", force: :cascade do |t|
     t.string "name"
@@ -22,6 +34,34 @@ ActiveRecord::Schema.define(version: 2018_10_28_212800) do
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "currencies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "daily_movements", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "currency_id"
+    t.integer "action"
+    t.integer "value_foreign"
+    t.integer "value_colombia"
+    t.integer "exchange_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["currency_id"], name: "index_daily_movements_on_currency_id"
+    t.index ["user_id"], name: "index_daily_movements_on_user_id"
+  end
+
+  create_table "general_expenses", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "value"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_general_expenses_on_user_id"
   end
 
   create_table "user_cashiers", force: :cascade do |t|
@@ -50,6 +90,11 @@ ActiveRecord::Schema.define(version: 2018_10_28_212800) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bills", "cashiers"
+  add_foreign_key "bills", "currencies"
+  add_foreign_key "daily_movements", "currencies"
+  add_foreign_key "daily_movements", "users"
+  add_foreign_key "general_expenses", "users"
   add_foreign_key "user_cashiers", "cashiers"
   add_foreign_key "user_cashiers", "users"
 end

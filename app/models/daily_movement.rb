@@ -1,0 +1,31 @@
+class DailyMovement < ApplicationRecord
+  belongs_to :user
+  belongs_to :currency
+
+  enum action: { sale: 0, purchase: 1 }
+end
+
+# == Schema Information
+#
+# Table name: daily_movements
+#
+#  id             :bigint(8)        not null, primary key
+#  action         :integer
+#  exchange_rate  :integer
+#  value_colombia :integer
+#  value_foreign  :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  currency_id    :bigint(8)
+#  user_id        :bigint(8)
+#
+# Indexes
+#
+#  index_daily_movements_on_currency_id  (currency_id)
+#  index_daily_movements_on_user_id      (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (currency_id => currencies.id)
+#  fk_rails_...  (user_id => users.id)
+#

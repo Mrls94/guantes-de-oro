@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :user_cashiers
   has_many :cashiers, through: :user_cashiers
+  has_many :general_expenses
+  has_many :daily_movements
 end
 
 # == Schema Information

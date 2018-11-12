@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @general_expense.user %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @general_expense.value %>
+</p>
+
+<p>
+  <strong>Descripto:</strong>
+  <%= @general_expense.descripto %>
+</p>
+
+<%= link_to 'Edit', edit_general_expense_path(@general_expense) %> |
+<%= link_to 'Back', general_expenses_path %>
