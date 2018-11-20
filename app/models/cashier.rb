@@ -1,6 +1,9 @@
 class Cashier < ApplicationRecord
   has_many :user_cashiers
   has_many :users, through: :user_cashiers
+  has_one :session
+
+  scope :no_session, ->{where('cashiers.id not in (select cashier_id from sessions)')}
 
   def total_money_for(name_of_currency)
     7

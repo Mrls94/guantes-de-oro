@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_12_012723) do
+ActiveRecord::Schema.define(version: 2018_11_20_014517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,15 @@ ActiveRecord::Schema.define(version: 2018_11_12_012723) do
     t.index ["user_id"], name: "index_general_expenses_on_user_id"
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "cashier_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cashier_id"], name: "index_sessions_on_cashier_id"
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
   create_table "user_cashiers", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "cashier_id"
@@ -95,6 +104,8 @@ ActiveRecord::Schema.define(version: 2018_11_12_012723) do
   add_foreign_key "daily_movements", "currencies"
   add_foreign_key "daily_movements", "users"
   add_foreign_key "general_expenses", "users"
+  add_foreign_key "sessions", "cashiers"
+  add_foreign_key "sessions", "users"
   add_foreign_key "user_cashiers", "cashiers"
   add_foreign_key "user_cashiers", "users"
 end

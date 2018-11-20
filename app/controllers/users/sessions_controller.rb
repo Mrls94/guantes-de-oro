@@ -19,6 +19,10 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def sign_in_cashier
+    @session = Session.new
+  end
+
+  def session_cashier
   end
 
   # protected

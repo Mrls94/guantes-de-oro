@@ -5,7 +5,7 @@
       </h3>
   </div>
   <div class="box-body">
-    <%#= form_for(resource, as: resource_name, url: cashier_session_path(resource_name)) do |f| %>
+    <%= form_for(@session, url: users_session_cashier_path) do |f| %>
       <div class="field form-group">
         <%#= f.label :email %><br />
         <%#= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
@@ -15,6 +15,7 @@
         <%#= f.label :password %><br />
         <%#= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
       </div>
+
       <%= current_user.cashiers.first.place %>
 
       <%# if devise_mapping.rememberable? -%>
@@ -27,7 +28,7 @@
       <div class="actions">
         <%#= f.submit "Log in" %>
       </div>
-    <%# end %>
+    <% end %>
 
     <%#= render "devise/shared/links" %>
   </div>
