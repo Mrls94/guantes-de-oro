@@ -1,0 +1,32 @@
+<aside class="main-sidebar control-sidebar control-sidebar-dark">
+  <section class="sidebar">
+    <li>
+      <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+    </li>
+
+    <div class="user-panel">
+      <div class="pull-left info">
+          <%= current_user.email %> 
+      </div>
+    </div>
+
+    <ul class="sidebar-menu" data-widget="tree">
+      <li class="<%= 'active' if controller_name == 'daily_movements' %>" >
+        <%= link_to new_daily_movement_path do %>
+          <i class="fa fa-link"></i> <span>Movimiento del día</span>
+        <% end %>
+      </li>
+      <li class="<%= 'active' if controller_name == 'general_expenses' %>" >
+        <%= link_to new_general_expense_path do %>
+          <i class="fa fa-link"></i> <span>Gasto generales</span>
+        <% end %>
+      </li>
+      
+      <li class="<%= 'active' if controller_name == 'currencies' %>" >
+        <%= link_to currencies_path do %>
+          <i class="fa fa-link"></i> <span>Administrar monedas</span>
+        <% end %>
+      </li>
+    </ul>
+  </section>
+</aside>

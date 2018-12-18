@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GuantesDeOroTestLogin</title>
+    <title>Guantes de Oro</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,12 +9,22 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="sidebar-mini">
     <% if current_user %>
-      <li>
-        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-      </li>
+      <% if current_user.session %>
+        <%= render 'shared/static_header' %>
+        <%= render 'shared/sidebar' %>
+        <div class="content">
+          <%= yield %>  
+        </div>
+      <% else %>
+        <li>
+          <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+        </li>
+        <%= yield %>
+      <% end %>
+    <% else %>
+      <%= yield %>
     <% end %>
-    <%= yield %>
   </body>
 </html>

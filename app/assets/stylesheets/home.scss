@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$yellow: #F7DC1B;
+$white: #FFFFFF;
+$light-blue: #54BAD8;
+$blue: #0093C6;
+$dark-blue: #192C47; 
+
+
 .login-box{
   width: 32%;
   margin: auto;
@@ -12,4 +19,35 @@
 .box-center{
   text-align: center;
   width: 100%
+}
+
+.main-sidebar{
+  position: absolute;
+  width: 230px;
+  height: 100%;
+  background-color: $dark-blue;
+  color: $white;
+  span {
+    color: $white;
+  }
+}
+
+.content{
+  margin-left: 230px;
+}
+
+.main-header{
+  position: relative;
+  height: 50px;
+  z-index: 1030;
+  background-color: $light-blue;
+}
+
+.sidebar-menu > li > a{
+  border-left: 3px solid transparent;
+}
+
+.sidebar-menu > li.active > a{
+  border-left-color: $yellow;
+  background: black;
 }

@@ -5,6 +5,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
+    current_user&.sessions&.destroy_all
     super
   end
 
@@ -15,14 +16,27 @@ class Users::SessionsController < Devise::SessionsController
 
   # DELETE /resource/sign_out
   def destroy
+    current_user&.sessions&.destroy_all
     super
   end
 
   def sign_in_cashier
+    current_user&.sessions&.destroy_all
     @session = Session.new
   end
 
   def session_cashier
+    session = Session.new
+    session.user = current_user
+
+    cashier_id = params[:session][:cashier_id]
+    cashier = Cashier.find(cashier_id) if cashier_id.present?
+
+    session.cashier = cashier
+
+    session.save
+
+    redirect_to '/'
   end
 
   # protected

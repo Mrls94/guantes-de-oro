@@ -16,7 +16,7 @@
         <%#= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
       </div>
 
-      <%= current_user.cashiers.first.place %>
+      <%= f.collection_select(:cashier_id, current_user.cashiers.no_session, :id, :place, :include_blank => true) %>
 
       <%# if devise_mapping.rememberable? -%>
         <div class="field">
@@ -26,7 +26,7 @@
       <%# end -%>
 
       <div class="actions">
-        <%#= f.submit "Log in" %>
+        <%= f.submit "Seleccionar" %>
       </div>
     <% end %>
 
