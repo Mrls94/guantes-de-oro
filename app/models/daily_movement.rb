@@ -2,7 +2,7 @@ class DailyMovement < ApplicationRecord
   belongs_to :user
   belongs_to :currency
 
-  enum action: { sale: 0, purchase: 1 }
+  enum action: { compra: 0, venta: 1 }
 end
 
 # == Schema Information

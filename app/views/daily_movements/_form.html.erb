@@ -17,13 +17,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :currency_id %>
-    <%= form.text_field :currency_id %>
+    <%= form.label :currency_id, 'Divisa' %>
+    <%= form.collection_select(:currency_id, Currency.all, :id, :name) %>
   </div>
 
   <div class="field">
-    <%= form.label :action %>
-    <%= form.number_field :action %>
+    <%= form.label :action, 'Accion' %>
+    <%= form.collection_select(:action, DailyMovement.actions.to_a, :second, :first) %>
   </div>
 
   <div class="field">
