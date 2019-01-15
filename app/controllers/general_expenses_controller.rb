@@ -25,6 +25,7 @@ class GeneralExpensesController < ApplicationController
   # POST /general_expenses.json
   def create
     @general_expense = GeneralExpense.new(general_expense_params)
+    @general_expense.user = current_user
 
     respond_to do |format|
       if @general_expense.save

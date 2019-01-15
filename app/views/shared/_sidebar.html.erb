@@ -27,6 +27,12 @@
           <i class="fa fa-link"></i> <span>Administrar monedas</span>
         <% end %>
       </li>
+
+      <li class="<%= 'active' if controller_name == 'users' %>" >
+        <%= link_to users_path do %>
+          <i class="fa fa-link"></i> <span>Administrar usuarios</span>
+        <% end %>
+      </li>
     </ul>
   </section>
 </aside>

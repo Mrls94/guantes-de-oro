@@ -25,6 +25,7 @@ class DailyMovementsController < ApplicationController
   # POST /daily_movements.json
   def create
     @daily_movement = DailyMovement.new(daily_movement_params)
+    @daily_movement.user = current_user
 
     respond_to do |format|
       if @daily_movement.save

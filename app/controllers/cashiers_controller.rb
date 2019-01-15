@@ -63,13 +63,14 @@ class CashiersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cashier
-      @cashier = Cashier.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cashier_params
-      params.require(:cashier).permit(:description, :place, :concept, :comment, :nombre)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cashier
+    @cashier = Cashier.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cashier_params
+    params.require(:cashier).permit(:description, :place, :concept, :comment, :nombre)
+  end
 end

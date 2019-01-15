@@ -35,6 +35,7 @@ class Users::SessionsController < Devise::SessionsController
     session.cashier = cashier
 
     session.save
+    puts "Error: #{session.errors.inspect}"
 
     redirect_to '/'
   end

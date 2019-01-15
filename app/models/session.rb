@@ -1,6 +1,6 @@
 class Session < ApplicationRecord
   belongs_to :user
-  belongs_to :cashier
+  belongs_to :cashier, optional: true
 end
 
 # == Schema Information
