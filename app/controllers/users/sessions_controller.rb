@@ -11,7 +11,17 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    super
+    user = User.where(email: params[:user][:email]).first
+
+    if user
+      if user.active
+        super
+      else
+        redirect_to '/users/sign_in', notice: 'Usuario desactivado'
+      end
+    else
+      redirect_to '/users/sign_in', notice: 'Usuario no registrado'
+    end
   end
 
   # DELETE /resource/sign_out
@@ -35,7 +45,6 @@ class Users::SessionsController < Devise::SessionsController
     session.cashier = cashier
 
     session.save
-    puts "Error: #{session.errors.inspect}"
 
     redirect_to '/'
   end

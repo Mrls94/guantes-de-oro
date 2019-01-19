@@ -71,6 +71,6 @@ class CashiersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def cashier_params
-    params.require(:cashier).permit(:description, :place, :concept, :comment, :nombre)
+    params.require(:cashier).permit(:place, :concept, :comment, :name)
   end
 end

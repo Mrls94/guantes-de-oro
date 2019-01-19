@@ -33,6 +33,12 @@
           <i class="fa fa-link"></i> <span>Administrar usuarios</span>
         <% end %>
       </li>
+
+      <li class="<%= 'active' if controller_name == 'cashiers' %>" >
+        <%= link_to cashiers_path do %>
+          <i class="fa fa-link"></i> <span>Administrar cajas</span>
+        <% end %>
+      </li>
     </ul>
   </section>
 </aside>
