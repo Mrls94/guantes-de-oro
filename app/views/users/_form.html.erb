@@ -38,6 +38,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :admin %><br />
+    <%= form.check_box :admin %>
+  </div>
+
+  <div class="field">
     <%= label_tag 'Cajeros Assignados' %><br />
     <%= select_tag 'user[cashier_ids]', options_from_collection_for_select(Cashier.all, :id, :place, user.cashiers.pluck(:id)),{multiple: true, size: 6} %>
   </div>

@@ -1,6 +1,7 @@
 class CashiersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_cashier, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /cashiers
   # GET /cashiers.json
