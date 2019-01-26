@@ -47,6 +47,10 @@ gem 'jquery-rails'
 gem 'passenger', '~> 5.0', '>= 5.0.30'
 gem 'capistrano-passenger'
 gem 'capistrano-rvm'
+# gem 'rvm-capistrano'
+
+gem "therubyracer"
+gem "execjs"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -15,10 +15,12 @@ set :use_sudo, true
 
 set :branch, 'master'
 
-set :rvm_type, :system
-set :default_shell, "/bin/bash -l"
-set :rvm_map_bins, %w{gem rake ruby rails bundle}
-set :rvm_custom_path, '/usr/share/rvm/bin'
+set :rvm_type, :auto
+# set :rvm_ruby_version, '2.6.0'
+# set :default_shell, "/bin/bash -l"
+# set :rvm_map_bins, %w{gem rake ruby rails bundle}
+set :rvm_custom_path, '/usr/share/rvm'
+# set :rvm_bin_path, '/usr/share/rvm/bin/'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
