@@ -16,6 +16,7 @@ set :use_sudo, true
 set :branch, 'master'
 
 set :rvm_type, :system
+set :default_shell, "/bin/bash -l"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
