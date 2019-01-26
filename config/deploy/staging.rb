@@ -52,6 +52,7 @@
 server "54.91.28.161",
   user: "ubuntu",
   roles: %w{app db web},
+  port: 22,
   ssh_options: {
     user: "ubuntu", # overrides user setting above
     keys: %w(~/.ssh/millavesita.pem),
