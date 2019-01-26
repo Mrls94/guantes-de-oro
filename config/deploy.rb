@@ -15,6 +15,8 @@ set :use_sudo, true
 
 set :branch, 'master'
 
+set :rvm_type, :system
+
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
