@@ -18,7 +18,8 @@ development:
 
 staging:
   <<: *default
-  database: <%= ENV['guantes_db_host'] %>
+  host: <%= ENV['guantes_db_host'] %>
+  database: <%= ENV['guantes_db_name'] %>
   username: <%= ENV['guantes_db_username'] %>
   password: <%= ENV['guantes_db_password'] %>
 
