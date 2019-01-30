@@ -1,6 +1,8 @@
 class UserCashier < ApplicationRecord
   belongs_to :user
   belongs_to :cashier
+
+  validates :cashier, uniqueness: { scope: :user }
 end
 
 # == Schema Information
@@ -15,8 +17,9 @@ end
 #
 # Indexes
 #
-#  index_user_cashiers_on_cashier_id  (cashier_id)
-#  index_user_cashiers_on_user_id     (user_id)
+#  index_user_cashiers_on_cashier_id              (cashier_id)
+#  index_user_cashiers_on_user_id                 (user_id)
+#  index_user_cashiers_on_user_id_and_cashier_id  (user_id,cashier_id) UNIQUE
 #
 # Foreign Keys
 #

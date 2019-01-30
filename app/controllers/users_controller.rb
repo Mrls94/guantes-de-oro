@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        @user.cashiers << Cashier.where(id: params[:user][:cashier_ids])
+        add_cashiers
         format.html { redirect_to users_path, notice: 'user was successfully created.' }
         format.json { render :index, status: :ok }
       else
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        @user.cashiers << Cashier.where(id: params[:user][:cashier_ids])
+        add_cashiers
         format.html { redirect_to users_path, notice: 'user was successfully updated.' }
         format.json { render :index, status: :ok }
       else
@@ -76,5 +76,12 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :active, :admin)
+  end
+
+  def add_cashiers
+    return if params[:user][:cashier_ids].empty?
+
+    cashier_ids = params[:user][:cashier_ids].map{ |id| id.to_i } - @user.cashiers.pluck(:id)
+    @user.cashiers << Cashier.where(id: cashier_ids)
   end
 end
