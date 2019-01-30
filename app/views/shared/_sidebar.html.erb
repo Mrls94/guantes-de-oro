@@ -1,7 +1,7 @@
 <aside class="main-sidebar control-sidebar control-sidebar-dark">
   <section class="sidebar">
     <li>
-      <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+      <%= link_to('Cerrar Session', destroy_user_session_path, method: :delete) %>        
     </li>
 
     <div class="user-panel">
@@ -11,34 +11,46 @@
     </div>
 
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="<%= 'active' if controller_name == 'daily_movements' %>" >
-        <%= link_to new_daily_movement_path do %>
-          <i class="fa fa-link"></i> <span>Movimiento del día</span>
-        <% end %>
-      </li>
-      <li class="<%= 'active' if controller_name == 'general_expenses' %>" >
-        <%= link_to new_general_expense_path do %>
-          <i class="fa fa-link"></i> <span>Gasto generales</span>
-        <% end %>
-      </li>
+
+      <% if can? :manage, DailyMovement %>
+        <li class="<%= 'active' if controller_name == 'daily_movements' %>" >
+          <%= link_to new_daily_movement_path do %>
+            <i class="fa fa-link"></i> <span>Movimiento del día</span>
+          <% end %>
+        </li>
+      <% end %>
+
+      <% if can? :manage, GeneralExpense %>
+        <li class="<%= 'active' if controller_name == 'general_expenses' %>" >
+          <%= link_to new_general_expense_path do %>
+            <i class="fa fa-link"></i> <span>Gasto generales</span>
+          <% end %>
+        </li>
+      <% end %>
       
-      <li class="<%= 'active' if controller_name == 'currencies' %>" >
-        <%= link_to currencies_path do %>
-          <i class="fa fa-link"></i> <span>Administrar monedas</span>
-        <% end %>
-      </li>
+      <% if can? :manage, Currency %>
+        <li class="<%= 'active' if controller_name == 'currencies' %>" >
+          <%= link_to currencies_path do %>
+            <i class="fa fa-link"></i> <span>Administrar monedas</span>
+          <% end %>
+        </li>
+      <% end %>
 
-      <li class="<%= 'active' if controller_name == 'users' %>" >
-        <%= link_to users_path do %>
-          <i class="fa fa-link"></i> <span>Administrar usuarios</span>
-        <% end %>
-      </li>
+      <% if can? :manage, User %>
+        <li class="<%= 'active' if controller_name == 'users' %>" >
+          <%= link_to users_path do %>
+            <i class="fa fa-link"></i> <span>Administrar usuarios</span>
+          <% end %>
+        </li>
+      <% end %>
 
-      <li class="<%= 'active' if controller_name == 'cashiers' %>" >
-        <%= link_to cashiers_path do %>
-          <i class="fa fa-link"></i> <span>Administrar cajas</span>
-        <% end %>
-      </li>
+      <% if can? :manage, Cashier %>
+        <li class="<%= 'active' if controller_name == 'cashiers' %>" >
+          <%= link_to cashiers_path do %>
+            <i class="fa fa-link"></i> <span>Administrar cajas</span>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </section>
 </aside>

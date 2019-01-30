@@ -29,11 +29,15 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
-    if user.admin?
-      can :manage, :all
-    else
+    if user.session.cashier.present?
       can :manage, GeneralExpense
       can :manage, DailyMovement
+    end
+
+    if user.admin?
+      can :manage, User
+      can :manage, Cashier
+      can :manage, Currency
     end
   end
 end

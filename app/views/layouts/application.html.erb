@@ -18,9 +18,7 @@
           <%= yield %>  
         </div>
       <% else %>
-        <li>
-          <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-        </li>
+        <%= link_to('Cerrar Session', destroy_user_session_path, method: :delete) %>        
         <%= yield %>
       <% end %>
     <% else %>
