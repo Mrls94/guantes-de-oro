@@ -1,5 +1,8 @@
 #!/bin/bash -xe
 
+echo 'STOP SPRING'
+/usr/share/rvm/bin/rvm default do bundle exec spring stop
+
 echo 'STOPPING PASSENGER'
 passenger stop -p 3000
 
