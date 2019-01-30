@@ -1,6 +1,7 @@
 class DailyMovementsController < ApplicationController
   before_action :set_daily_movement, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :check_session
   load_and_authorize_resource
 
   # GET /daily_movements

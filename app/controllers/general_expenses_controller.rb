@@ -1,6 +1,7 @@
 class GeneralExpensesController < ApplicationController
   before_action :set_general_expense, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :check_session
   load_and_authorize_resource
 
   # GET /general_expenses

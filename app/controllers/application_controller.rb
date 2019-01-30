@@ -1,8 +1,14 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
-  
+
   def set_locale
     I18n.locale = :es
+  end
+
+  def check_session
+    if current_user.session.nil?
+      sing_out current_user
+    end
   end
 
   rescue_from CanCan::AccessDenied do |exception|
