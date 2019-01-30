@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        @user.cashiers << Cashier.where(id: params[:user][:cashier_ids])
         format.html { redirect_to users_path, notice: 'user was successfully created.' }
         format.json { render :index, status: :ok }
       else
@@ -45,6 +46,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        @user.cashiers << Cashier.where(id: params[:user][:cashier_ids])
         format.html { redirect_to users_path, notice: 'user was successfully updated.' }
         format.json { render :index, status: :ok }
       else
