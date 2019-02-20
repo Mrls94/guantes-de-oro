@@ -1,7 +1,7 @@
 class DailyMovement < ApplicationRecord
   belongs_to :user
   belongs_to :currency
-  belongts_to :cashier
+  belongs_to :cashier
 
   enum action: { compra: 0, venta: 1 }
 end
