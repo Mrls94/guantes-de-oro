@@ -29,6 +29,7 @@ class DailyMovementsController < ApplicationController
   def create
     @daily_movement = DailyMovement.new(daily_movement_params)
     @daily_movement.user = current_user
+    @daily_movement.cashier = current_user.session.cashier
 
     respond_to do |format|
       if @daily_movement.save
