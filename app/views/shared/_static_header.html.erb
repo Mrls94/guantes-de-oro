@@ -6,6 +6,9 @@
   <nav class="navbar navbar-static-top navbar-top">
     <div class="header-content-nav pull-right info">
       <%= current_user.email %>
+      <% if current_user.session.cashier %>
+        <b><%= current_user.session.cashier.place %></b>
+      <% end %>
       <div class="sign-out-button-header">
         <%= link_to('Cerrar Session', destroy_user_session_path, method: :delete) %>
       </div>
