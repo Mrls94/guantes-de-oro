@@ -1,5 +1,9 @@
+html {
+  height: 100%;
+}
+
 body {
-  background-color: #f9f9f9;
+  background-color: #d2d6de;
   color: #333;
   // padding: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
@@ -81,4 +85,8 @@ div {
 
 label {
   display: block;
+}
+
+.content {
+  background-color: #d2d6de;
 }

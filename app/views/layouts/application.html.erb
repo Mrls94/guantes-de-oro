@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="sidebar-mini">
+  <body>
     <% if current_user %>
       <% if current_user.session %>
         <%= render 'shared/static_header' %>
@@ -18,7 +18,9 @@
           <%= yield %>  
         </div>
       <% else %>
-        <%= link_to('Cerrar Session', destroy_user_session_path, method: :delete) %>        
+        <div class="sign-out-button">
+          <%= link_to('Cerrar Session', destroy_user_session_path, method: :delete) %>
+        </div>    
         <%= yield %>
       <% end %>
     <% else %>

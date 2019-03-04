@@ -6,15 +6,31 @@ $yellow: #F7DC1B;
 $white: #FFFFFF;
 $light-blue: #54BAD8;
 $blue: #0093C6;
-$dark-blue: #192C47; 
+$dark-blue: #192C47;
 
+.login-logo {
+  font-size: 35px;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 300px;
+}
 
 .login-box{
   width: 32%;
-  margin: auto;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.login-box-body {
   background-color: #E3E3E3;
   border-color: #d3d3d3;
 }
+
+
 
 .box-center{
   text-align: center;
@@ -40,7 +56,7 @@ $dark-blue: #192C47;
   position: relative;
   height: 50px;
   z-index: 1030;
-  background-color: $light-blue;
+  background-color: $blue;
 }
 
 .sidebar-menu > li > a{
@@ -50,4 +66,40 @@ $dark-blue: #192C47;
 .sidebar-menu > li.active > a{
   border-left-color: $yellow;
   background: black;
+}
+
+.sign-out-button{
+  padding: 5px;
+  a {
+    color: $dark-blue;
+  
+    &:hover {
+      color: $light-blue;
+      background-color: transparent;
+    }
+  }
+}
+
+.logo-content{
+  font-size: 35px;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 300px;
+}
+
+.logo-lg{
+  display: block;
+  color: $white;
+  font-size: 20px;
+  text-align: center;
+  width: 230px;
+  display: inline-block;
+  height: 100%;
+}
+
+.navbar-top {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
