@@ -17,10 +17,7 @@
         <div class="content">
           <%= yield %>  
         </div>
-      <% else %>
-        <div class="sign-out-button">
-          <%= link_to('Cerrar Session', destroy_user_session_path, method: :delete) %>
-        </div>    
+      <% else %>    
         <%= yield %>
       <% end %>
     <% else %>

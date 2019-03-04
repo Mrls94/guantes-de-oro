@@ -4,5 +4,11 @@
   </div>
 
   <nav class="navbar navbar-static-top navbar-top">
+    <div class="header-content-nav pull-right info">
+      <%= current_user.email %>
+      <div class="sign-out-button-header">
+        <%= link_to('Cerrar Session', destroy_user_session_path, method: :delete) %>
+      </div>
+    </div>
   </nav>
 </header>

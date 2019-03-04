@@ -70,8 +70,14 @@ $dark-blue: #192C47;
 
 .sign-out-button{
   padding: 5px;
+  text-align: center;
+  font-weight: bold;
   a {
-    color: $dark-blue;
+    color: $blue;
+
+    &:visited {
+      color: $blue;
+    }
   
     &:hover {
       color: $light-blue;
@@ -88,18 +94,59 @@ $dark-blue: #192C47;
 }
 
 .logo-lg{
-  display: block;
   color: $white;
   font-size: 20px;
   text-align: center;
   width: 230px;
   display: inline-block;
   height: 100%;
+  vertical-align: middle;
+  position: absolute;
+  line-height: 46px;
+  background-color: #367fa9;
 }
 
 .navbar-top {
   display: inline-block;
-  position: absolute;
-  top: 0;
-  width: 100%;
+  position: relative;
+  padding-left: 230px;
+  width: 100%
+}
+
+.select-cashier{
+  margin: 10px auto auto auto;
+  width: 75%;
+}
+
+
+.actions {
+  text-align: center;
+  .button-cashier{
+    margin: auto;
+  }
+}
+
+.header-content-nav{
+  color: $white;
+  line-height: 46px;
+  margin-right: 10px;
+}
+
+.sign-out-button-header{
+  margin-left: 15px;
+  text-align: center;
+  font-weight: bold;
+  display: inline-block;
+  a {
+    color: $white;
+
+    &:visited {
+      color: $white;
+    }
+  
+    &:hover {
+      color: $light-blue;
+      background-color: transparent;
+    }
+  }
 }
