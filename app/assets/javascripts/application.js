@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap.min
 //= require admin-lte
+//= require bootstrap-multiselect
 //= require_tree .

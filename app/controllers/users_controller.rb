@@ -62,7 +62,7 @@ class UsersController < ApplicationController
   def destroy
     @user.update(active: false)
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'user was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'Usuario ha sido desactivado' }
       format.json { head :no_content }
     end
   end

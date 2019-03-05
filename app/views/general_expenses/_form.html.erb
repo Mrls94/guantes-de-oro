@@ -1,27 +1,31 @@
-<%= form_with(model: general_expense, local: true) do |form| %>
-  <% if general_expense.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(general_expense.errors.count, "error") %> prohibited this general_expense from being saved:</h2>
+<div class="box box-primary box-form-content">
+  <div class="box-body">
+    <%= form_with(model: general_expense, local: true) do |form| %>
+      <% if general_expense.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(general_expense.errors.count, "error") %> prohibited this general_expense from being saved:</h2>
 
-      <ul>
-      <% general_expense.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% general_expense.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
+
+      <div class="field form-group">
+        <%= form.label :value, 'Valor' %>
+        <%= form.number_field :value, class: "form-control" %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :description, 'Descripcion' %>
+        <%= form.text_field :description, class: "form-control" %>
+      </div>
+
+      <div class="actions submit-form">
+        <%= form.submit "Ingresar Gasto general", {class: "btn btn-primary"} %>
+      </div>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :value, 'Valor' %>
-    <%= form.number_field :value %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description, 'Descripcion' %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

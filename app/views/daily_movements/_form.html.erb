@@ -1,42 +1,46 @@
-<%= form_with(model: daily_movement, local: true) do |form| %>
-  <% if daily_movement.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(daily_movement.errors.count, "error") %> prohibited this daily_movement from being saved:</h2>
+<div class="box box-primary box-form-content">
+  <div class="box-body">
+    <%= form_with(model: daily_movement, local: true) do |form| %>
+      <% if daily_movement.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(daily_movement.errors.count, "error") %> prohibited this daily_movement from being saved:</h2>
 
-      <ul>
-      <% daily_movement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% daily_movement.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :currency_id, 'Divisa' %>
-    <%= form.collection_select(:currency_id, Currency.all, :id, :name) %>
-  </div>
+      <div class="field form-group">
+        <%= form.label :currency_id, 'Divisa' %>
+        <%= form.collection_select(:currency_id, Currency.all, :id, :name, {},{class: "form-control"}) %>
+      </div>
 
-  <div class="field">
-    <%= form.label :action, 'Accion' %>
-    <%= form.collection_select(:action, DailyMovement.actions.to_a, :second, :first) %>
-  </div>
+      <div class="field form-group">
+        <%= form.label :action, 'Accion' %>
+        <%= form.collection_select(:action, DailyMovement.actions.to_a, :second, :first, {},{class: "form-control"}) %>
+      </div>
 
-  <div class="field">
-    <%= form.label :value_foreign %>
-    <%= form.number_field :value_foreign %>
-  </div>
+      <div class="field form-group">
+        <%= form.label :value_foreign %>
+        <%= form.number_field :value_foreign, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :value_colombia %>
-    <%= form.number_field :value_colombia %>
-  </div>
+      <div class="field form-group">
+        <%= form.label :value_colombia %>
+        <%= form.number_field :value_colombia, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :exchange_rate %>
-    <%= form.number_field :exchange_rate %>
-  </div>
+      <div class="field form-group">
+        <%= form.label :exchange_rate %>
+        <%= form.number_field :exchange_rate, class: "form-control" %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="actions submit-form">
+        <%= form.submit "Ingresar Movimiento Diario", {class: "btn btn-primary"}%>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
