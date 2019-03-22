@@ -9,7 +9,7 @@
         <tr>
           <th>Correo</th>
           <th>Ultimo inicio de session</th>
-          <th>Fecha Creacion</th>
+          <th>Cajas Asignadas</th>
           <th>Activo</th>
           <th>Administrador</th>
           <th colspan="2"></th>
@@ -21,7 +21,7 @@
           <tr>
             <td><%= user.email %></td>
             <td><%= user.last_sign_in_at %></td>
-            <td><%= user.created_at %></td>
+            <td><%= user.cashiers.pluck(:place).join(',') %></td>
             <td><span class="label <%= user.active ? "label-success" : "label-danger" %>"> <%= user.active ? "Activo" : "Desactivado" %></td>
             <td><span class="label <%= user.admin ? "label-primary" : "label-warning" %>"> <%= user.admin ? "Administrador" : "Empleado" %></td>
             <td><%= link_to 'Editar', edit_user_path(user) %></td>

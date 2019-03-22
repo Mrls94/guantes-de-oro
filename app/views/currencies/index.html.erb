@@ -1,27 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Currencies</h1>
+<h1>Divisas</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="box">
+  <div class="box-body table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>TRM de compra</th>
+          <th>TRM de venta</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @currencies.each do |currency| %>
-      <tr>
-        <td><%= currency.name %></td>
-        <td><%= link_to 'Show', currency %></td>
-        <td><%= link_to 'Edit', edit_currency_path(currency) %></td>
-        <td><%= link_to 'Destroy', currency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @currencies.each do |currency| %>
+          <tr>
+            <td><%= currency.name %></td>
+            <td><%= currency.default_buy_rate %></td>
+            <td><%= currency.default_sale_rate %></td>
+            <td><%= link_to 'Editar', edit_currency_path(currency) %></td>
+            <td><%= link_to 'Eliminar', currency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<br>
+    <br>
 
-<%= link_to 'New Currency', new_currency_path %>
+    <%= link_to 'Nueva Divisa', new_currency_path %>
+  </div>
+</div>

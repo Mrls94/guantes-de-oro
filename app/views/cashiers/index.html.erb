@@ -1,33 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Cashiers</h1>
+<h1>Cajas</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Place</th>
-      <th>Concept</th>
-      <th>Comment</th>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="box">
+  <div class="box-body table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Place</th>
+          <th>Concept</th>
+          <th>Comment</th>
+          <th>Name</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @cashiers.each do |cashier| %>
-      <tr>
-        <td><%= cashier.place %></td>
-        <td><%= cashier.concept %></td>
-        <td><%= cashier.comment %></td>
-        <td><%= cashier.name %></td>
-        <td><%= link_to 'Show', cashier %></td>
-        <td><%= link_to 'Edit', edit_cashier_path(cashier) %></td>
-        <td><%= link_to 'Destroy', cashier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @cashiers.each do |cashier| %>
+          <tr>
+            <td><%= cashier.place %></td>
+            <td><%= cashier.concept %></td>
+            <td><%= cashier.comment %></td>
+            <td><%= cashier.name %></td>
+            <td><%= link_to 'Show', cashier %></td>
+            <td><%= link_to 'Edit', edit_cashier_path(cashier) %></td>
+            <td><%= link_to 'Destroy', cashier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<br>
+    <br>
 
-<%= link_to 'New Cashier', new_cashier_path %>
+    <%= link_to 'Nueva Caja', new_cashier_path %>
+  </div>
+</div>
