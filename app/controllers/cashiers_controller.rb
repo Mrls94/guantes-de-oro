@@ -22,6 +22,10 @@ class CashiersController < ApplicationController
 
   # GET /cashiers/1/edit
   def edit
+    @currency_values = []
+    Currency.all.each do |currency|
+      @currency_values << @cashier.currency_values.find_or_initialize_by(currency_id: currency.id).save
+    end
   end
 
   # POST /cashiers
@@ -45,8 +49,8 @@ class CashiersController < ApplicationController
   def update
     respond_to do |format|
       if @cashier.update(cashier_params)
-        format.html { redirect_to @cashier, notice: 'Cashier was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cashier }
+        format.html { render :edit, notice: 'Cajero fue actualizado exitosamente' }
+        format.json { render :edit, status: :ok, location: @cashier }
       else
         format.html { render :edit }
         format.json { render json: @cashier.errors, status: :unprocessable_entity }
@@ -73,6 +77,15 @@ class CashiersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def cashier_params
-    params.require(:cashier).permit(:place, :concept, :comment, :name)
+    params.require(:cashier).permit(
+      :place,
+      :concept,
+      :comment,
+      :name,
+      currency_values_attributes: [
+        :id,
+        :value
+      ]
+    )
   end
 end

@@ -1,37 +1,65 @@
-<%= form_with(model: cashier, local: true) do |form| %>
-  <% if cashier.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(cashier.errors.count, "error") %> prohibited this cashier from being saved:</h2>
+<div class="box box-primary box-form-content">
+  <div clas="box-header with-border">
+    <h3 class="box-title">Atributos Caja</h3>
+  </div>
 
-      <ul>
-      <% cashier.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  <div class="box-body">
+    <%= form_with(model: cashier, local: true) do |form| %>
+      <% if cashier.errors.any? %>
+        <div id="error_explanation">
+          <h2><% pluralize(cashier.errors.count, "error") %> Errores encontrados:</h2>
+
+          <ul>
+          <% cashier.errors.messages.each do |error| %>
+            <li><%= error.second.first %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
+
+      <div class="field form-group">
+        <%= form.label :place, "Lugar" %>
+        <%= form.text_field :place, class: "form-control" %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :concept, "Concepto" %>
+        <%= form.text_field :concept, class: "form-control" %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :comment, "Comentario" %>
+        <%= form.text_field :comment, class: "form-control" %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :name, "Nombre" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Ingresar Caja", {class: "btn btn-primary"} %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="box box-success box-form-content">
+  <div class="box-body">
+    <%= form_with(model: cashier, local: true) do |form| %>
+      <div clas="box-header with-border">
+        <h3 class="box-title">Valores en Caja</h3>
+      </div>
+
+      <div class="box-body">
+        <%= form.fields_for :currency_values, cashier.currency_values do |f| %>
+          <%= render 'currency_values', f: f %>
+        <% end %>
+      </div>
+
+    <div class="actions">
+      <%= form.submit "Ingresar Valores", {class: "btn btn-primary"} %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :place %>
-    <%= form.text_field :place %>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= form.label :concept %>
-    <%= form.text_field :concept %>
-  </div>
-
-  <div class="field">
-    <%= form.label :comment %>
-    <%= form.text_field :comment %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

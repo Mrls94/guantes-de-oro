@@ -56,6 +56,8 @@ gem 'capistrano-secrets-yml'
 gem "therubyracer"
 gem "execjs"
 
+gem "actionview", ">= 5.2.2.1"
+
 gem 'bootstrap-multiselect-rails'
 
 group :development, :test do
