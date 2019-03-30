@@ -6,6 +6,7 @@ class Cashier < ApplicationRecord
   has_one :session
 
   accepts_nested_attributes_for :currency_values#, reject_if: ->(attributes){ attributes['value'] < 0 }
+  validates :value_colombia, numericality: { greater_than_or_equal_to: 0, message: "No puede quedar en un numero negativo el monto" }
 
   scope :no_session, ->{where('cashiers.id not in (select cashier_id from sessions)')}
 
@@ -23,11 +24,12 @@ end
 #
 # Table name: cashiers
 #
-#  id         :bigint(8)        not null, primary key
-#  comment    :string
-#  concept    :string
-#  name       :string
-#  place      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id             :bigint(8)        not null, primary key
+#  comment        :string
+#  concept        :string
+#  name           :string
+#  place          :string
+#  value_colombia :integer          default(0)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #

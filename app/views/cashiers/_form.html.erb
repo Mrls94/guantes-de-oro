@@ -52,6 +52,11 @@
   <div class="box-body">
     <%= form_with(model: cashier, local: true) do |form| %>
       <div class="box-body">
+        <div class="field form-group">
+          <%= form.label :value_colombia, "Peso Colombiano" %>
+          <%= form.number_field :value_colombia, {class: "form-control"} %>
+        </div>
+
         <%= form.fields_for :currency_values, cashier.currency_values do |f| %>
           <%= render 'currency_values', f: f %>
         <% end %>

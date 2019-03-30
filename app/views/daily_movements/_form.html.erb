@@ -1,9 +1,15 @@
 <div class="box box-primary box-form-content">
   <div class="box-info">
+    <%= hidden_field_tag 'currency_info', @currency_info.to_json %>
+
     <div class="info">
-      <%= hidden_field_tag 'currency_info', @currency_info.to_json %>
       <label>Valor en Caja de divisa</label>
       <h4 class="currency-value-info"><%= @currency_info.select{ |ci| ci[:currency_id] == @default_currency.id }.first[:value] %></h4>
+    </div>
+
+    <div class="info">
+      <label>Valor en Caja de Peso Colombiano</label>
+      <h4 class="currency-value-info"><%= current_user.session.cashier.value_colombia %></h4>
     </div>
   </div>
   <div class="box-body">

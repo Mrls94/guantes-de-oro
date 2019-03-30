@@ -49,6 +49,10 @@ class CashiersController < ApplicationController
   def update
     respond_to do |format|
       if @cashier.update(cashier_params)
+        puts cashier_params[:value_colombia]
+        puts '--------------------------'
+        puts @cashier.reload.value_colombia
+        puts '-----------------------------'
         format.html { render :edit, notice: 'Cajero fue actualizado exitosamente' }
         format.json { render :edit, status: :ok, location: @cashier }
       else
@@ -82,6 +86,7 @@ class CashiersController < ApplicationController
       :concept,
       :comment,
       :name,
+      :value_colombia,
       currency_values_attributes: [
         :id,
         :value

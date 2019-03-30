@@ -6,11 +6,19 @@ $('document').ready(function(){
   })
 
   $("#daily_movement_value_foreign").change(function(){
-    $("#daily_movement_value_colombia").attr('disabled','disabled');
+    $("#daily_movement_value_colombia").attr('readOnly','readOnly');
+
+    var value_colombia = $("#daily_movement_value_foreign").val() * $("#daily_movement_exchange_rate").val()
+
+    $("#daily_movement_value_colombia").val(value_colombia)
   })
 
   $("#daily_movement_value_colombia").change(function(){
-    $("#daily_movement_value_foreign").attr('disabled','disabled');
+    $("#daily_movement_value_foreign").attr('readOnly','readOnly');
+
+    var value_divisa = $("#daily_movement_value_colombia").val() / $("#daily_movement_exchange_rate").val()
+
+    $("#daily_movement_value_foreign").val(value_divisa)
   })
 
   function getInfoSelectedCurrency(){

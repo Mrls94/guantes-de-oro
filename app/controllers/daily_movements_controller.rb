@@ -45,6 +45,7 @@ class DailyMovementsController < ApplicationController
     @daily_movement = DailyMovement.new(daily_movement_params)
     @daily_movement.user = current_user
     @daily_movement.cashier = current_user.session.cashier
+    @daily_movement.action = params[:action].to_i
 
     respond_to do |format|
       if @daily_movement.save
@@ -89,6 +90,6 @@ class DailyMovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def daily_movement_params
-      params.require(:daily_movement).permit(:user_id, :currency_id, :action, :value_foreign, :value_colombia, :exchange_rate)
+      params.require(:daily_movement).permit(:user_id, :currency_id, :value_foreign, :value_colombia, :exchange_rate)
     end
 end
