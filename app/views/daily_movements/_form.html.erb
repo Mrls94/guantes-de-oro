@@ -3,7 +3,7 @@
     <div class="info">
       <%= hidden_field_tag 'currency_info', @currency_info.to_json %>
       <label>Valor en Caja de divisa</label>
-      <h4 class="currency-value-info"><%= @currency_info.select{ |ci| ci[:currency_id] == 1 }.first[:value] %></h4>
+      <h4 class="currency-value-info"><%= @currency_info.select{ |ci| ci[:currency_id] == @default_currency.id }.first[:value] %></h4>
     </div>
   </div>
   <div class="box-body">
@@ -22,7 +22,7 @@
 
       <div class="field form-group">
         <%= form.label :currency_id, 'Divisa' %>
-        <%= form.collection_select(:currency_id, Currency.all, :id, :name, { selected: 1 },{class: "form-control info-change"}) %>
+        <%= form.collection_select(:currency_id, Currency.all, :id, :name, { selected: @default_currency.id },{class: "form-control info-change"}) %>
       </div>
 
       <div class="field form-group">
@@ -42,7 +42,7 @@
 
       <div class="field form-group">
         <%= form.label :exchange_rate, 'Tasa de Cambio' %>
-        <%= form.number_field :exchange_rate, class: "form-control", value: @currency_info.select{ |ci| ci[:currency_id] == 1 }.first[:default_sale_rate]  %>
+        <%= form.number_field :exchange_rate, class: "form-control", value: @currency_info.select{ |ci| ci[:currency_id] == @default_currency.id }.first[:default_sale_rate]  %>
       </div>
 
       <div class="actions submit-form">
