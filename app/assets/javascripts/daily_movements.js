@@ -9,7 +9,7 @@ $('document').ready(function(){
     var selected_id = $('#daily_movement_currency_id :selected').val();
     var info_string = $('#currency_info').val();
     var info = JSON.parse(info_string)
-    var selected_info = info.filter( obj => {
+    var selected_info = info.filter( function (obj){
       return (obj.currency_id + "") === (selected_id + "") 
     })
     
