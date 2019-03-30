@@ -1,4 +1,11 @@
 <div class="box box-primary box-form-content">
+  <div class="box-info">
+    <div class="info">
+      <%= hidden_field_tag 'currency_info', @currency_info.to_json %>
+      <label>Valor en Caja de divisa</label>
+      <h4 class="currency-value-info"><%= @currency_info.select{ |ci| ci[:currency_id] == 1 }.first[:value] %></h4>
+    </div>
+  </div>
   <div class="box-body">
     <%= form_with(model: daily_movement, local: true) do |form| %>
       <% if daily_movement.errors.any? %>
@@ -15,12 +22,12 @@
 
       <div class="field form-group">
         <%= form.label :currency_id, 'Divisa' %>
-        <%= form.collection_select(:currency_id, Currency.all, :id, :name, {},{class: "form-control"}) %>
+        <%= form.collection_select(:currency_id, Currency.all, :id, :name, { selected: 1 },{class: "form-control info-change"}) %>
       </div>
 
       <div class="field form-group">
         <%= form.label :action, 'Accion' %>
-        <%= form.collection_select(:action, DailyMovement.actions.to_a, :second, :first, {},{class: "form-control"}) %>
+        <%= form.collection_select(:action, DailyMovement.actions.to_a, :second, :first, { selected: 1 },{class: "form-control info-change"}) %>
       </div>
 
       <div class="field form-group">
@@ -35,7 +42,7 @@
 
       <div class="field form-group">
         <%= form.label :exchange_rate, 'Tasa de Cambio' %>
-        <%= form.number_field :exchange_rate, class: "form-control" %>
+        <%= form.number_field :exchange_rate, class: "form-control", value: @currency_info.select{ |ci| ci[:currency_id] == 1 }.first[:default_sale_rate]  %>
       </div>
 
       <div class="actions submit-form">

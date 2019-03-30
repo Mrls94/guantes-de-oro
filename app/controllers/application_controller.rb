@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   def check_session
     if current_user.session.nil?
       sign_out current_user
+      redirect_to 'users/sign_in'
     end
   end
 

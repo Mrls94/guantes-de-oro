@@ -18,6 +18,15 @@ class DailyMovementsController < ApplicationController
   # GET /daily_movements/new
   def new
     @daily_movement = DailyMovement.new
+    @currency_info = current_user.session.cashier.currency_values.map do |cv|
+      {
+        currency_id: cv.currency.id,
+        currency_name: cv.currency.name,
+        default_buy_rate: cv.currency.default_buy_rate,
+        default_sale_rate: cv.currency.default_sale_rate,
+        value: cv.value
+      }
+    end
   end
 
   # GET /daily_movements/1/edit

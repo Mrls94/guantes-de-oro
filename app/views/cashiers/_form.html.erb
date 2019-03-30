@@ -1,5 +1,5 @@
 <div class="box box-primary box-form-content">
-  <div clas="box-header with-border">
+  <div class="box-header with-border">
     <h3 class="box-title">Atributos Caja</h3>
   </div>
 
@@ -45,12 +45,12 @@
 </div>
 
 <div class="box box-success box-form-content">
+  <div class="box-header with-border">
+    <h3 class="box-title">Valores en Caja</h3>
+  </div>
+
   <div class="box-body">
     <%= form_with(model: cashier, local: true) do |form| %>
-      <div clas="box-header with-border">
-        <h3 class="box-title">Valores en Caja</h3>
-      </div>
-
       <div class="box-body">
         <%= form.fields_for :currency_values, cashier.currency_values do |f| %>
           <%= render 'currency_values', f: f %>
