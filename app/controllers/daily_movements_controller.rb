@@ -19,6 +19,11 @@ class DailyMovementsController < ApplicationController
   def new
     @daily_movement = DailyMovement.new
     @default_currency = Currency.first
+
+    Currency.all.each do |currency|
+      @cashier.currency_values.find_or_initialize_by(currency_id: currency.id).save
+    end
+
     @currency_info = current_user.session.cashier.currency_values.map do |cv|
       {
         currency_id: cv.currency.id,
