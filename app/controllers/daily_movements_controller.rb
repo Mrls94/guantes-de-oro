@@ -21,7 +21,7 @@ class DailyMovementsController < ApplicationController
     @default_currency = Currency.first
 
     Currency.all.each do |currency|
-      @cashier.currency_values.find_or_initialize_by(currency_id: currency.id).save
+      current_user.session.cashier.currency_values.find_or_initialize_by(currency_id: currency.id).save
     end
 
     @currency_info = current_user.session.cashier.currency_values.map do |cv|
