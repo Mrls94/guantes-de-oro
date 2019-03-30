@@ -62,8 +62,9 @@
 $('document').ready(function(){
   $('.info-change').change(function(){
     var info = getInfoSelectedCurrency();
-    setValue(info);
+    setCashierValue(info);
     setTRM(info);
+    refreshValueColombiaDivisa();
   })
 
   $("#daily_movement_value_foreign").change(function(){
@@ -82,6 +83,14 @@ $('document').ready(function(){
     $("#daily_movement_value_foreign").val(value_divisa)
   })
 
+  function refreshValueColombiaDivisa(){
+    $("#daily_movement_value_foreign").removeAttr("readOnly")
+    $("#daily_movement_value_colombia").removeAttr("readOnly")
+
+    $("#daily_movement_value_foreign").val(0)
+    $("#daily_movement_value_colombia").val(0)
+  }
+
   function getInfoSelectedCurrency(){
     var selected_id = $('#daily_movement_currency_id :selected').val();
     var info_string = $('#currency_info').val();
@@ -93,7 +102,7 @@ $('document').ready(function(){
     return selected_info[0];
   }
 
-  function setValue(info){
+  function setCashierValue(info){
     $(".currency-value-info").html(info.value);
   }
 
