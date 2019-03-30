@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def check_session
     if current_user.session.nil?
-      sing_out current_user
+      sign_out current_user
     end
   end
 
