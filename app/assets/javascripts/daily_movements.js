@@ -5,6 +5,14 @@ $('document').ready(function(){
     setTRM(info);
   })
 
+  $("#daily_movement_value_foreign").change(function(){
+    $("#daily_movement_value_colombia").attr('disabled','disabled');
+  })
+
+  $("#daily_movement_value_colombia").change(function(){
+    $("#daily_movement_value_foreign").attr('disabled','disabled');
+  })
+
   function getInfoSelectedCurrency(){
     var selected_id = $('#daily_movement_currency_id :selected').val();
     var info_string = $('#currency_info').val();
