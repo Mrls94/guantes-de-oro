@@ -4,6 +4,34 @@ class DailyMovement < ApplicationRecord
   belongs_to :cashier
 
   enum action: { compra: 0, venta: 1 }
+
+  validates :value_colombia, presence: {message: "Valor de precio en peso colombiano no puede estar vacio"}
+  validates :value_foreign, presence: {message: "Valor de precio en divisa no puede estar vacio" }
+  validates :action, presence: true
+  validates :exchange_rate, presence: true
+  validates :user_id, presence: true
+  validates :cashier_id, presence: true
+  validates_with CashierCurrencyValueValidator
+
+  def deduct_from_cashier
+    if compra?
+      old_cashier_value = cashier.value_colombia
+      new_cashier_value = old_cashier_value - value_colombia
+      cashier.update(value_colombia: new_cashier_value)
+
+      old_cashier_value_divisa = cashier.total_money_for(currency)
+      new_cashier_value_divisa = old_cashier_value_divisa + value_foreign
+      cashier.currency_values.find_or_initialize_by(currency: currency).update(value: new_cashier_value_divisa)
+    else
+      old_cashier_value = cashier.total_money_for(currency)
+      new_cashier_value = old_cashier_value - value_foreign
+      cashier.currency_values.find_or_initialize_by(currency: currency).update(value: new_cashier_value)
+
+      old_cashier_value_colombia = cashier.value_colombia
+      new_cashier_value_colombia = old_cashier_value_colombia + value_colombia
+      cashier.update(value_colombia: new_cashier_value_colombia)
+    end
+  end
 end
 
 # == Schema Information

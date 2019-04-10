@@ -16,11 +16,11 @@
     <%= form_with(model: daily_movement, local: true) do |form| %>
       <% if daily_movement.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(daily_movement.errors.count, "error") %> prohibited this daily_movement from being saved:</h2>
+          <h2><%= pluralize(daily_movement.errors.count, "error") %> errores encontrados:</h2>
 
           <ul>
-          <% daily_movement.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+          <% daily_movement.errors.messages.each do |attribute, message| %>
+            <li><%= message.join(', ') %></li>
           <% end %>
           </ul>
         </div>
@@ -33,7 +33,8 @@
 
       <div class="field form-group">
         <%= form.label :action, 'Accion' %>
-        <%= form.collection_select(:action, DailyMovement.actions.to_a, :second, :first, { selected: 1 },{class: "form-control info-change"}) %>
+        <% selected_action = @daily_movement.errors.any? ? @daily_movement.action_before_type_cast : 1 %>
+        <%= form.collection_select(:action, DailyMovement.actions.to_a, :second, :first, { selected: selected_action },{class: "form-control info-change"}) %>
       </div>
 
       <div class="field form-group">

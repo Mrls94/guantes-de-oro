@@ -6,3 +6,9 @@ es:
           attributes:
             value:
               greater_than_or_equal_to: "Valor debe ser mayor que 0"
+        daily_movements:
+          attributes:
+            value_colombia:
+              blank: "Valor de precio en peso colombiano no puede estar vacio"
+            value_foreign:
+              blank: "Valor de precio en divisa no puede estar vacio"

@@ -18,21 +18,7 @@ class DailyMovementsController < ApplicationController
   # GET /daily_movements/new
   def new
     @daily_movement = DailyMovement.new
-    @default_currency = Currency.first
-
-    Currency.all.each do |currency|
-      current_user.session.cashier.currency_values.find_or_initialize_by(currency_id: currency.id).save
-    end
-
-    @currency_info = current_user.session.cashier.currency_values.map do |cv|
-      {
-        currency_id: cv.currency.id,
-        currency_name: cv.currency.name,
-        default_buy_rate: cv.currency.default_buy_rate,
-        default_sale_rate: cv.currency.default_sale_rate,
-        value: cv.value
-      }
-    end
+    set_new_variables
   end
 
   # GET /daily_movements/1/edit
@@ -45,15 +31,19 @@ class DailyMovementsController < ApplicationController
     @daily_movement = DailyMovement.new(daily_movement_params)
     @daily_movement.user = current_user
     @daily_movement.cashier = current_user.session.cashier
-    @daily_movement.action = params[:action].to_i
+    @daily_movement.action = params[:daily_movement][:action].to_i
 
     respond_to do |format|
-      if @daily_movement.save
-        format.html { redirect_to @daily_movement, notice: 'Daily movement was successfully created.' }
-        format.json { render :show, status: :created, location: @daily_movement }
-      else
-        format.html { render :new }
-        format.json { render json: @daily_movement.errors, status: :unprocessable_entity }
+      ActiveRecord::Base.transaction do
+        if @daily_movement.save
+          @daily_movement.deduct_from_cashier
+          format.html { redirect_to action: 'new', notice: 'Movimiento Diario fue creado exitosamente' }
+          format.json { render :show, status: :created, location: @daily_movement }
+        else
+          set_new_variables
+          format.html { render :new }
+          format.json { render json: @daily_movement.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -91,5 +81,23 @@ class DailyMovementsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def daily_movement_params
       params.require(:daily_movement).permit(:user_id, :currency_id, :value_foreign, :value_colombia, :exchange_rate)
+    end
+
+    def set_new_variables
+      @default_currency = Currency.first
+
+      Currency.all.each do |currency|
+        current_user.session.cashier.currency_values.find_or_initialize_by(currency_id: currency.id).save
+      end
+
+      @currency_info = current_user.session.cashier.currency_values.map do |cv|
+        {
+          currency_id: cv.currency.id,
+          currency_name: cv.currency.name,
+          default_buy_rate: cv.currency.default_buy_rate,
+          default_sale_rate: cv.currency.default_sale_rate,
+          value: cv.value
+        }
+      end
     end
 end

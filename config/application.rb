@@ -13,6 +13,14 @@ module GuantesDeOroTestLogin
 
     config.autoload_paths += %W(#{config.root}/lib)
 
+    # Load locale files
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**/*.{rb,yml}').to_s]
+
+    # Sentry configuration
+    Raven.configure do |config|
+      config.dsn = 'https://c0f7663b055b445ba46ec8450ea27f66:a5060667e89f4a8e862ab1b856e49728@sentry.io/1432791'
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
