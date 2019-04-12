@@ -11,23 +11,41 @@ $('document').ready(function(){
     setCashierValue(info);
     setTRM(info);
     refreshValueColombiaDivisa();
+    setCompraTRM(info);
   })
 
   $("#daily_movement_value_foreign").change(function(){
     $("#daily_movement_value_colombia").attr('readOnly','readOnly');
 
-    var value_colombia = $("#daily_movement_value_foreign").val() * $("#daily_movement_exchange_rate").val()
-
-    $("#daily_movement_value_colombia").val(value_colombia)
+    setValueColombia();
   })
 
   $("#daily_movement_value_colombia").change(function(){
     $("#daily_movement_value_foreign").attr('readOnly','readOnly');
 
-    var value_divisa = $("#daily_movement_value_colombia").val() / $("#daily_movement_exchange_rate").val()
-
-    $("#daily_movement_value_foreign").val(value_divisa)
+    setValueForeign();
   })
+
+  $("#daily_movement_exchange_rate").change(function(){
+    var attr = $("#daily_movement_value_colombia").attr("readOnly")
+    if (typeof attr !== typeof undefined && attr !== false){
+      setValueColombia();
+    } else {
+      setValueForeign();
+    }
+  })
+
+  function setValueColombia(){
+    var value_colombia = $("#daily_movement_value_foreign").val() * $("#daily_movement_exchange_rate").val()
+    var value_colombia_new = roundBasedOnAction(value_colombia);
+    $("#daily_movement_value_colombia").val(value_colombia_new)
+  }
+
+  function setValueForeign(){
+    var value_divisa = $("#daily_movement_value_colombia").val() / $("#daily_movement_exchange_rate").val()
+    var value_divisa_new = roundBasedOnAction(value_divisa);
+    $("#daily_movement_value_foreign").val(value_divisa_new)
+  }
 
   function refreshValueColombiaDivisa(){
     $("#daily_movement_value_foreign").removeAttr("readOnly")
@@ -62,5 +80,20 @@ $('document').ready(function(){
     }
 
     $("#daily_movement_exchange_rate").val(trm);
+  }
+
+  function setCompraTRM(info){
+    $(".currency-value-info-trm").html(info.compra_trm)
+  }
+
+  function roundBasedOnAction(value){
+    var selected_action_id = $("#daily_movement_action :selected").val();
+    if ( selected_action_id === "0" ){
+      var new_value = Math.ceil(value);
+    } else {
+      var new_value = Math.floor(value);
+    }
+
+    return new_value;
   }
 });

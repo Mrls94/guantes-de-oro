@@ -1,34 +1,33 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @daily_movement.user %>
+  <strong>Usuario:</strong>
+  <%= @daily_movement.user.email %>
 </p>
 
 <p>
-  <strong>Currency:</strong>
-  <%= @daily_movement.currency %>
+  <strong>Divisa:</strong>
+  <%= @daily_movement.currency.name %>
 </p>
 
 <p>
-  <strong>Action:</strong>
+  <strong>Accion:</strong>
   <%= @daily_movement.action %>
 </p>
 
 <p>
-  <strong>Value foreign:</strong>
+  <strong>Valor divisa:</strong>
   <%= @daily_movement.value_foreign %>
 </p>
 
 <p>
-  <strong>Value colombia:</strong>
+  <strong>Valor colombia:</strong>
   <%= @daily_movement.value_colombia %>
 </p>
 
 <p>
-  <strong>Exchange rate:</strong>
+  <strong>TRM:</strong>
   <%= @daily_movement.exchange_rate %>
 </p>
 
-<%= link_to 'Edit', edit_daily_movement_path(@daily_movement) %> |
-<%= link_to 'Back', daily_movements_path %>
+<%= link_to 'Atras', new_daily_movement_path %>

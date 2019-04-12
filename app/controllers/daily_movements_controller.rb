@@ -37,7 +37,7 @@ class DailyMovementsController < ApplicationController
       ActiveRecord::Base.transaction do
         if @daily_movement.save
           @daily_movement.deduct_from_cashier
-          format.html { redirect_to action: 'new', notice: 'Movimiento Diario fue creado exitosamente' }
+          format.html { redirect_to @daily_movement, notice: 'Movimiento Diario fue creado exitosamente' }
           format.json { render :show, status: :created, location: @daily_movement }
         else
           set_new_variables
@@ -75,7 +75,7 @@ class DailyMovementsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_daily_movement
-      @daily_movement = DailyMovement.find(params[:id])
+      @daily_movement = current_user.daily_movements.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -91,12 +91,21 @@ class DailyMovementsController < ApplicationController
       end
 
       @currency_info = current_user.session.cashier.currency_values.map do |cv|
+        daily_movement_compras = current_user.session.cashier.daily_movements.where("action = 0 AND currency_id = #{cv.currency.id} AND created_at > '#{Time.zone.now.beginning_of_day}'")
+
+        compra_trm = if daily_movement_compras.any?
+                       array = daily_movement_compras.pluck(:exchange_rate)
+                       (array.reduce(:+) / array.size.to_f).ceil
+                     else
+                       'No se han hecho compras'
+                     end
         {
           currency_id: cv.currency.id,
           currency_name: cv.currency.name,
           default_buy_rate: cv.currency.default_buy_rate,
           default_sale_rate: cv.currency.default_sale_rate,
-          value: cv.value
+          value: cv.value,
+          compra_trm: compra_trm
         }
       end
     end
