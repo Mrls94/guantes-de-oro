@@ -1,0 +1,62 @@
+<div class="box box-solid box-primary login-box">
+  <div class="box-header">
+    <h3 class="box-title box-center">
+      Si encuentras alguna diferencia con los valores de cajas siguientes 
+      por favor comenta al respecto y marca el checkbox
+    </h3>
+  </div>
+
+  <div class="box-body login-box-body">
+    <%= form_with(model: sign_in_comment, local: true) do |form| %>
+      <% if sign_in_comment.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(sign_in_comment.errors.count, "error") %> prohibited this sign_in_comment from being saved:</h2>
+
+          <ul>
+          <% sign_in_comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Divisa</th>
+              <th>Valor en caja</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Peso Colombiano</td>
+              <td><%= @cashier.value_colombia%></td>
+            </tr>
+            <% @cashier.currency_values.each do |currency_value| %>
+              <tr>
+                <td><%= currency_value.currency.name %></td>
+                <td><%= currency_value.value %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :comment, 'Comentario' %>
+        <%= form.text_area :comment, class: "form-control" %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.label :anomaly, "Anomalia" %><br />
+        <%= form.check_box :anomaly %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Ingresar", {class: "btn btn-primary button-cashier"} %>
+      </div>
+    <% end %>
+  </div>
+</div>

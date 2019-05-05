@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @sign_in_comment.user %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @sign_in_comment.comment %>
+</p>
+
+<p>
+  <strong>Cashier:</strong>
+  <%= @sign_in_comment.cashier %>
+</p>
+
+<p>
+  <strong>Cashier currency values:</strong>
+  <%= @sign_in_comment.cashier_currency_values %>
+</p>
+
+<p>
+  <strong>Anomaly:</strong>
+  <%= @sign_in_comment.anomaly %>
+</p>
+
+<%= link_to 'Edit', edit_sign_in_comment_path(@sign_in_comment) %> |
+<%= link_to 'Back', sign_in_comments_path %>

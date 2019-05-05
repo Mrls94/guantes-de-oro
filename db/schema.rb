@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_30_214811) do
+ActiveRecord::Schema.define(version: 2019_05_01_221514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,18 @@ ActiveRecord::Schema.define(version: 2019_03_30_214811) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "sign_in_comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "comment"
+    t.bigint "cashier_id"
+    t.json "cashier_currency_values"
+    t.boolean "anomaly"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cashier_id"], name: "index_sign_in_comments_on_cashier_id"
+    t.index ["user_id"], name: "index_sign_in_comments_on_user_id"
+  end
+
   create_table "user_cashiers", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "cashier_id"
@@ -127,6 +139,8 @@ ActiveRecord::Schema.define(version: 2019_03_30_214811) do
   add_foreign_key "general_expenses", "users"
   add_foreign_key "sessions", "cashiers"
   add_foreign_key "sessions", "users"
+  add_foreign_key "sign_in_comments", "cashiers"
+  add_foreign_key "sign_in_comments", "users"
   add_foreign_key "user_cashiers", "cashiers"
   add_foreign_key "user_cashiers", "users"
 end

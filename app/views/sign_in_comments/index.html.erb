@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Comentarios de inicio de session</h1>
+
+<div class="box">
+  <div class="box-body table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Cajero</th>
+          <th>Anomalia</th>
+          <th>Fecha</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @sign_in_comments.each do |sign_in_comment| %>
+          <tr>
+            <td><%= sign_in_comment.user.email %></td>
+            <td><%= sign_in_comment.cashier.place %></td>
+            <td><span class="label <%= sign_in_comment.anomaly ? "label-danger" : "label-success" %>"> <%= sign_in_comment.anomaly ? 'Anomalia' : 'Sin Anomalia' %></td>
+            <td><%= sign_in_comment.created_at.in_time_zone %></td>
+            <td><%= link_to 'Mostrar', sign_in_comment %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

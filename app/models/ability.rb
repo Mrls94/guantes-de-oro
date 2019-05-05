@@ -38,6 +38,9 @@ class Ability
       can :manage, User
       can :manage, Cashier
       can :manage, Currency
+      can :manage, SignInComment
+    else
+      can :create, SignInComment
     end
   end
 end

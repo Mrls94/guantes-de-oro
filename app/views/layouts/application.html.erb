@@ -11,14 +11,14 @@
 
   <body>
     <% if current_user %>
-      <% if current_user.session %>
+      <% if current_user.session.nil? || (controller_name == 'sign_in_comments' && action_name == 'new') %>
+        <%= yield %>
+      <% else %>
         <%= render 'shared/static_header' %>
         <%= render 'shared/sidebar' %>
         <div class="content">
           <%= yield %>  
         </div>
-      <% else %>    
-        <%= yield %>
       <% end %>
     <% else %>
       <%= yield %>

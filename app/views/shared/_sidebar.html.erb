@@ -41,6 +41,14 @@
           <% end %>
         </li>
       <% end %>
+
+      <% if can? :manage, SignInComment %>
+        <li class="<%= 'active' if controller_name == 'sign_in_comment' %>" >
+          <%= link_to sign_in_comments_path do %>
+            <i class="fa fa-link"></i> <span>Comentarios de inicio de session</span>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </section>
 </aside>

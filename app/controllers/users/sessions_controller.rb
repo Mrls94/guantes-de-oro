@@ -46,7 +46,11 @@ class Users::SessionsController < Devise::SessionsController
 
     session.save
 
-    redirect_to '/'
+    if cashier
+      redirect_to '/sign_in_comments/new'
+    else
+      redirect_to '/'
+    end
   end
 
   # protected
