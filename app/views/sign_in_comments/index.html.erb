@@ -21,7 +21,7 @@
             <td><%= sign_in_comment.user.email %></td>
             <td><%= sign_in_comment.cashier.place %></td>
             <td><span class="label <%= sign_in_comment.anomaly ? "label-danger" : "label-success" %>"> <%= sign_in_comment.anomaly ? 'Anomalia' : 'Sin Anomalia' %></td>
-            <td><%= sign_in_comment.created_at.in_time_zone %></td>
+            <td><%= sign_in_comment.created_at %></td>
             <td><%= link_to 'Mostrar', sign_in_comment %></td>
           </tr>
         <% end %>
