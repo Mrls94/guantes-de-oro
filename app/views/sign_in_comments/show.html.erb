@@ -1,28 +1,49 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @sign_in_comment.user %>
-</p>
+<div class="box box-solid box-primary">
+  <div class="box-body">
+    <p>
+      <strong>Usuario:</strong>
+      <%= @sign_in_comment.user.email %>
+    </p>
 
-<p>
-  <strong>Comment:</strong>
-  <%= @sign_in_comment.comment %>
-</p>
+    <p>
+      <strong>Commentario:</strong>
+      <%= @sign_in_comment.comment %>
+    </p>
 
-<p>
-  <strong>Cashier:</strong>
-  <%= @sign_in_comment.cashier %>
-</p>
+    <p>
+      <strong>Caja:</strong>
+      <%= @sign_in_comment.cashier.place %>
+    </p>
 
-<p>
-  <strong>Cashier currency values:</strong>
-  <%= @sign_in_comment.cashier_currency_values %>
-</p>
+    <p>
+      <strong>Valores en caja:</strong>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Divisa</th>
+              <th>Valor en caja</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <% @sign_in_comment.cashier_currency_values.each do |obj| %>
+              <tr>
+                <td><%= obj['currency_name']%></td>
+                <td><%= obj['currency_value']%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </p>
 
-<p>
-  <strong>Anomaly:</strong>
-  <%= @sign_in_comment.anomaly %>
-</p>
+    <p>
+      <span class="label <%= @sign_in_comment.anomaly ? "label-danger" : "label-success" %>"> <%= @sign_in_comment.anomaly ? 'Anomalia' : 'Sin Anomalia' %>
+    </p>
 
-<%= link_to 'Atras', sign_in_comments_path %>
+    <%= link_to 'Atras', sign_in_comments_path %>
+  </div>
+</div>
