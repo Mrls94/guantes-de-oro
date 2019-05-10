@@ -2,7 +2,7 @@
   <div class="box-header">
     <h3 class="box-title box-center">
       Si encuentras alguna diferencia con los valores de cajas siguientes 
-      por favor comenta al respecto y marca el checkbox
+      por favor comenta al respecto y escoger la opcion de anomalia
     </h3>
   </div>
 
@@ -49,9 +49,11 @@
         <%= form.text_area :comment, class: "form-control" %>
       </div>
 
+      <%= form.hidden_field :anomaly, value: false %>
+
       <div class="field form-group">
-        <%= form.label :anomaly, "Anomalia" %><br />
-        <%= form.check_box :anomaly %>
+        <%= label_tag 'anamolia' %>
+        <%= select_tag 'anomalia', options_from_collection_for_select([['Normal', false],['Anomalia', true]], :second, :first) %>
       </div>
 
       <div class="actions">
@@ -60,3 +62,11 @@
     <% end %>
   </div>
 </div>
+<%= javascript_tag do %>
+$('document').ready(function(){
+  $("#anomalia").change(function(){
+    var selected_value = $('#anomalia :selected').val();
+    $("#sign_in_comment_anomaly").val(selected_value);
+  });
+});
+<% end %>

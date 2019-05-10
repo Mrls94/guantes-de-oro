@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-gem 'adminlte-rails'
+gem 'adminlte-rails', '1.3.2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
