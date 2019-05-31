@@ -2,10 +2,18 @@
   <section class="sidebar">
     <ul class="sidebar-menu" data-widget="tree">
 
-      <% if can? :manage, DailyMovement %>
-        <li class="<%= 'active' if controller_name == 'daily_movements' %>" >
+      <% if can? :create, DailyMovement %>
+        <li class="<%= 'active' if ( controller_name == 'daily_movements' && action_name == 'new' ) %>" >
           <%= link_to new_daily_movement_path do %>
-            <i class="fa fa-link"></i> <span>Movimiento del día</span>
+            <i class="fa fa-link"></i> <span>Crear Movimiento del día</span>
+          <% end %>
+        </li>
+      <% end %>
+
+      <% if can? :read, DailyMovement %>
+        <li class="<%= 'active' if ( controller_name == 'daily_movements' && ['index', 'show'].include?(action_name) ) %>" >
+          <%= link_to daily_movements_path do %>
+            <i class="fa fa-link"></i> <span>Listar Movimientos del día</span>
           <% end %>
         </li>
       <% end %>

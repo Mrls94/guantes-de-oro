@@ -32,6 +32,8 @@ class Ability
     if user.session.cashier.present?
       can :manage, GeneralExpense
       can :manage, DailyMovement
+    else
+      can :read, DailyMovement
     end
 
     if user.admin?

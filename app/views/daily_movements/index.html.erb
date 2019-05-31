@@ -5,13 +5,13 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Currency</th>
-      <th>Action</th>
-      <th>Value foreign</th>
-      <th>Value colombia</th>
-      <th>Exchange rate</th>
-      <th colspan="2"></th>
+      <th>Usuario</th>
+      <th>Divisa</th>
+      <th>Accion</th>
+      <th>Valor Divisa</th>
+      <th>Valor Peso Colombiano</th>
+      <th>TRM</th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
@@ -24,8 +24,7 @@
         <td><%= daily_movement.value_foreign %></td>
         <td><%= daily_movement.value_colombia %></td>
         <td><%= daily_movement.exchange_rate %></td>
-        <td><%= link_to 'Show', daily_movement %></td>
-        <td><%= link_to 'Destroy', daily_movement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', daily_movement %></td>
       </tr>
     <% end %>
   </tbody>
@@ -33,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Daily Movement', new_daily_movement_path %>
+<%#= link_to 'New Daily Movement', new_daily_movement_path %>

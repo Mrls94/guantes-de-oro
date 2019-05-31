@@ -7,7 +7,11 @@ class DailyMovementsController < ApplicationController
   # GET /daily_movements
   # GET /daily_movements.json
   def index
-    @daily_movements = DailyMovement.all
+    @daily_movements = if current_user.admin?
+                         DailyMovement.order(created_at: :desc)
+                       else
+                         current_user.daily_movements.order(created_at: :desc)
+                       end
   end
 
   # GET /daily_movements/1
