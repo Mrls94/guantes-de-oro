@@ -7,7 +7,7 @@ class SignInCommentsController < ApplicationController
   # GET /sign_in_comments
   # GET /sign_in_comments.json
   def index
-    @sign_in_comments = SignInComment.all
+    @sign_in_comments = SignInComment.order(created_at: :desc)
   end
 
   # GET /sign_in_comments/1

@@ -33,6 +33,12 @@ class Users::SessionsController < Devise::SessionsController
   def sign_in_cashier
     current_user&.sessions&.destroy_all
     @session = Session.new
+
+    @cashiers = if current_user.admin?
+                  Cashier.no_session
+                else
+                  current_user.cashiers.no_session
+                end
   end
 
   def session_cashier

@@ -8,7 +8,7 @@
     <%= form_for(@session, url: users_session_cashier_path) do |f| %>
 
       <div class="form-group">
-        <%= f.collection_select(:cashier_id, current_user.cashiers.no_session, :id, :place, {:include_blank => current_user.admin?}, {class: "form-control select-cashier"}) %>
+        <%= f.collection_select(:cashier_id, @cashiers, :id, :place, {:include_blank => current_user.admin?}, {class: "form-control select-cashier"}) %>
       </div>
       <%# if devise_mapping.rememberable? -%>
         <div class="field">
