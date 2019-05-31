@@ -1,6 +1,8 @@
 class SignInComment < ApplicationRecord
   belongs_to :user
   belongs_to :cashier
+
+  self.per_page = 10
 end
 
 # == Schema Information

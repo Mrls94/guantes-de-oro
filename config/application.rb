@@ -11,6 +11,8 @@ module GuantesDeOroTestLogin
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+    config.time_zone = 'Bogota'
+
     config.autoload_paths += %W(#{config.root}/lib)
 
     # Load locale files

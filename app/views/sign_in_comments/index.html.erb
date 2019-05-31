@@ -25,6 +25,7 @@
             <td><%= link_to 'Mostrar', sign_in_comment %></td>
           </tr>
         <% end %>
+        <%= will_paginate @sign_in_comments, previous_label: 'Anterior', next_label: 'Siguiente' %>
       </tbody>
     </table>
   </div>

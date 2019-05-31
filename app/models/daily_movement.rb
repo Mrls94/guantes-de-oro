@@ -13,6 +13,8 @@ class DailyMovement < ApplicationRecord
   validates :cashier_id, presence: true
   validates_with CashierCurrencyValueValidator
 
+  self.per_page = 10
+
   def deduct_from_cashier
     if compra?
       old_cashier_value = cashier.value_colombia

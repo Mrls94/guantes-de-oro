@@ -1,34 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Daily Movements</h1>
+<h1>Movimiento Diarios</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Usuario</th>
-      <th>Divisa</th>
-      <th>Accion</th>
-      <th>Valor Divisa</th>
-      <th>Valor Peso Colombiano</th>
-      <th>TRM</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
+<div class="box">
+  <div class="box-body table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Divisa</th>
+          <th>Accion</th>
+          <th>Valor Divisa</th>
+          <th>Valor Peso Colombiano</th>
+          <th>Fecha</th>
+          <th>TRM</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @daily_movements.each do |daily_movement| %>
-      <tr>
-        <td><%= daily_movement.user.email %></td>
-        <td><%= daily_movement.currency.name %></td>
-        <td><%= daily_movement.action %></td>
-        <td><%= daily_movement.value_foreign %></td>
-        <td><%= daily_movement.value_colombia %></td>
-        <td><%= daily_movement.exchange_rate %></td>
-        <td><%= link_to 'Mostrar', daily_movement %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @daily_movements.each do |daily_movement| %>
+          <tr>
+            <td><%= daily_movement.user.email %></td>
+            <td><%= daily_movement.currency.name %></td>
+            <td><%= daily_movement.action %></td>
+            <td><%= daily_movement.value_foreign %></td>
+            <td><%= daily_movement.value_colombia %></td>
+            <td><%= daily_movement.created_at %></td>
+            <td><%= daily_movement.exchange_rate %></td>
+            <td><%= link_to 'Mostrar', daily_movement %></td>
+          </tr>
+        <% end %>
+        <%= will_paginate @daily_movements, previous_label: 'Anterior', next_label: 'Siguiente' %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
 
 <br>
 
