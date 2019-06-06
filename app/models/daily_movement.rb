@@ -42,6 +42,7 @@ end
 #
 #  id             :bigint(8)        not null, primary key
 #  action         :integer
+#  description    :string
 #  exchange_rate  :integer
 #  value_colombia :integer
 #  value_foreign  :integer

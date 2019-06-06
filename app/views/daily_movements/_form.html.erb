@@ -57,6 +57,11 @@
         <%= form.number_field :exchange_rate, class: "form-control", value: @currency_info.select{ |ci| ci[:currency_id] == @default_currency.id }.first[:default_sale_rate]  %>
       </div>
 
+      <div class="field form-group">
+        <%= form.label :description, 'Descripcion' %>
+        <%= form.text_area :description, class: "form-control" %>
+      </div>
+
       <div class="actions submit-form">
         <%= form.submit "Ingresar Movimiento Diario", {class: "btn btn-primary"}%>
       </div>

@@ -8,6 +8,7 @@
       <thead>
         <tr>
           <th>Usuario</th>
+          <th>Caja</th>
           <th>Divisa</th>
           <th>Accion</th>
           <th>Valor Divisa</th>
@@ -22,8 +23,9 @@
         <% @daily_movements.each do |daily_movement| %>
           <tr>
             <td><%= daily_movement.user.email %></td>
+            <td><%= daily_movement.cashier.place %></td>
             <td><%= daily_movement.currency.name %></td>
-            <td><%= daily_movement.action %></td>
+            <td><span class="label <%= daily_movement.venta? ? "label-primary" : "label-warning" %>"><%= daily_movement.action %></span></td>
             <td><%= daily_movement.value_foreign %></td>
             <td><%= daily_movement.value_colombia %></td>
             <td><%= daily_movement.created_at %></td>

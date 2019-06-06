@@ -84,7 +84,7 @@ class DailyMovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def daily_movement_params
-      params.require(:daily_movement).permit(:user_id, :currency_id, :value_foreign, :value_colombia, :exchange_rate)
+      params.require(:daily_movement).permit(:user_id, :currency_id, :value_foreign, :value_colombia, :exchange_rate, :description)
     end
 
     def set_new_variables

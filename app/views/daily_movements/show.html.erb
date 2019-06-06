@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Caja:</strong>
+  <%= @daily_movement.cashier.place %>
+</p>
+
+<p>
   <strong>Divisa:</strong>
   <%= @daily_movement.currency.name %>
 </p>
@@ -30,4 +35,9 @@
   <%= @daily_movement.exchange_rate %>
 </p>
 
-<%= link_to 'Atras', new_daily_movement_path %>
+<p>
+  <strong>Descripcion:</strong>
+  <%= @daily_movement.description %>
+</p>
+
+<%#= link_to 'Atras', new_daily_movement_path %>
