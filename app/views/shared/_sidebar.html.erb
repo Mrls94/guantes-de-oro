@@ -19,9 +19,17 @@
       <% end %>
 
       <% if can? :manage, GeneralExpense %>
-        <li class="<%= 'active' if controller_name == 'general_expenses' %>" >
+        <li class="<%= 'active' if ( controller_name == 'general_expenses' && action_name == 'new' ) %>" >
           <%= link_to new_general_expense_path do %>
             <i class="fa fa-link"></i> <span>Gasto generales</span>
+          <% end %>
+        </li>
+      <% end %>
+
+      <% if can? :manage, GeneralExpense %>
+        <li class="<%= 'active' if ( controller_name == 'general_expenses' && ['index', 'show'].include?(action_name) ) %>" >
+          <%= link_to general_expenses_path do %>
+            <i class="fa fa-link"></i> <span>Listar Gastos generales</span>
           <% end %>
         </li>
       <% end %>

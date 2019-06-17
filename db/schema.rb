@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_225410) do
+ActiveRecord::Schema.define(version: 2019_06_17_193935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(version: 2019_05_31_225410) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "cashier_id"
+    t.index ["cashier_id"], name: "index_general_expenses_on_cashier_id"
     t.index ["user_id"], name: "index_general_expenses_on_user_id"
   end
 
@@ -137,6 +139,7 @@ ActiveRecord::Schema.define(version: 2019_05_31_225410) do
   add_foreign_key "daily_movements", "cashiers"
   add_foreign_key "daily_movements", "currencies"
   add_foreign_key "daily_movements", "users"
+  add_foreign_key "general_expenses", "cashiers"
   add_foreign_key "general_expenses", "users"
   add_foreign_key "sessions", "cashiers"
   add_foreign_key "sessions", "users"

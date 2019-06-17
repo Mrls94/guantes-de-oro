@@ -7,7 +7,11 @@ class GeneralExpensesController < ApplicationController
   # GET /general_expenses
   # GET /general_expenses.json
   def index
-    @general_expenses = GeneralExpense.all
+    @general_expenses = if current_user.admin?
+                          GeneralExpense.order(created_at: :desc).paginate(page: params[:page])
+                        else
+                          current_user.general_expenses.order(created_at: :desc).paginate(page: params[:page])
+                        end
   end
 
   # GET /general_expenses/1
@@ -29,14 +33,18 @@ class GeneralExpensesController < ApplicationController
   def create
     @general_expense = GeneralExpense.new(general_expense_params)
     @general_expense.user = current_user
+    @general_expense.cashier = current_user.session.cashier
 
     respond_to do |format|
-      if @general_expense.save
-        format.html { redirect_to @general_expense, notice: 'General expense was successfully created.' }
-        format.json { render :show, status: :created, location: @general_expense }
-      else
-        format.html { render :new }
-        format.json { render json: @general_expense.errors, status: :unprocessable_entity }
+      ActiveRecord::Base.transaction do
+        if @general_expense.save
+          @general_expense.deduct_from_cashier
+          format.html { redirect_to @general_expense, notice: 'General expense was successfully created.' }
+          format.json { render :show, status: :created, location: @general_expense }
+        else
+          format.html { render :new }
+          format.json { render json: @general_expense.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -73,6 +81,6 @@ class GeneralExpensesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def general_expense_params
-      params.require(:general_expense).permit(:user_id, :value, :descripto)
+      params.require(:general_expense).permit(:user_id, :value, :description)
     end
 end
