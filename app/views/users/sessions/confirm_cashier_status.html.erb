@@ -1,0 +1,38 @@
+<div class="box box-solid box-primary login-comment">
+  <div class="box-header">
+    <h3 class="box-title box-center">
+      Confirmar el estado del cajero
+    </h3>
+  </div>
+
+  <div class="box-body login-box-body">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Divisa</th>
+            <th>Valor en caja</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Peso Colombiano</td>
+            <td><%= @cashier.value_colombia %></td>
+          </tr>
+
+          <% @cashier.currency_values.each do |currency_value| %>
+            <tr>
+              <td><%= currency_value.currency.name %></td>
+              <td><%= currency_value.value %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="actions">
+      <%= link_to('Confirmar', destroy_user_session_path, method: :delete, class: "btn btn-primary button-cashier") %>
+    </div>
+  </div>
+</div>

@@ -8,10 +8,14 @@
       <%= current_user.email %>
       <% if current_user.session.cashier %>
         <b><%= current_user.session.cashier.place %></b>
+        <div class="sign-out-button-header">
+          <%= link_to('Cerrar Session', confirm_cashier_status_path, method: :get) %>
+        </div>
+      <% else %>
+        <div class="sign-out-button-header">
+          <%= link_to('Cerrar Session', destroy_user_session_path, method: :delete) %>
+        </div>
       <% end %>
-      <div class="sign-out-button-header">
-        <%= link_to('Cerrar Session', destroy_user_session_path, method: :delete) %>
-      </div>
     </div>
   </nav>
 </header>

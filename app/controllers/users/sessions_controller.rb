@@ -59,6 +59,10 @@ class Users::SessionsController < Devise::SessionsController
     end
   end
 
+  def confirm_cashier_status
+    @cashier = current_user.session.cashier
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
