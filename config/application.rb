@@ -21,6 +21,7 @@ module GuantesDeOroTestLogin
     # Sentry configuration
     Raven.configure do |config|
       config.dsn = 'https://c0f7663b055b445ba46ec8450ea27f66:a5060667e89f4a8e862ab1b856e49728@sentry.io/1432791'
+      config.environments = %w(staging production)
     end
 
     # Settings in config/environments/* take precedence over those specified here.
