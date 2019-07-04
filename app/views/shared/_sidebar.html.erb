@@ -65,6 +65,14 @@
           <% end %>
         </li>
       <% end %>
+
+      <% if can? :index, ReportsController %>
+        <li class="<%= 'active' if controller_name == 'reports' %>" >
+          <%= link_to reports_path do %>
+            <i class="fa fa-link"></i> <span>Reportes</span>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </section>
 </aside>

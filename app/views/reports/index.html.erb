@@ -1,0 +1,28 @@
+
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      Pesos Colombianos Vendidos y Comprados
+    </h3>
+  </div>
+  <div class="box-body">
+    <div class="bar-charts-container">
+      <%= bar_chart @ventas_money_data_js, {class: 'bar-charts'} %>
+      <%= bar_chart @compras_money_data_js, {class: 'bar-charts'} %>
+    </div>
+  </div>
+</div>
+
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      Ventas y Compras
+    </h3>
+  </div>
+  <div class="box-body">
+    <div class="bar-charts-container">
+      <%= pie_chart @ventas_count_data_js %>
+      <%= pie_chart @compras_count_data_js %>
+    </div>
+  </div>
+</div>

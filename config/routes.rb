@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   resources :currencies
   resources :cashiers
   resources :users
+  resources :reports, only: :index
 end

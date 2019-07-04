@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require Chart.bundle.min
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min

@@ -41,6 +41,7 @@ class Ability
       can :manage, Cashier
       can :manage, Currency
       can :manage, SignInComment
+      can :index, ReportsController
     else
       can :create, SignInComment
     end
