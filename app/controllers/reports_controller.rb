@@ -2,6 +2,8 @@ class ReportsController < ApplicationController
   def index
     authorize! :index, current_user
 
+    chart_options
+
     @ventas_money_data = get_money_data(:venta)
     @ventas_money_data_js = chart_data(@ventas_money_data.keys, @ventas_money_data.values,'Total Ventas en Peso Colombiano') # { labels: @ventas_money_data.keys, datasets: [label: 'Total Ventas en Peso Colombiano', data: @ventas_money_data.values]}
     @ventas_count_data = get_count_data(:venta)
@@ -92,28 +94,18 @@ class ReportsController < ApplicationController
       ]
   end
 
-  def chart_options(symptoms_size)
-    options = {
-        scales: {
-            xAxes: [{
-                gridLines: {
-                    drawOnChartArea:false
-                },
-                ticks: {
-                    maxRotation: 0,
-                    minRotation: 0
-                }
-            }],
-            yAxes: [{
-                gridLines: {
-                    drawOnChartArea:false
-                },
-                ticks: {
-                    min: 0,
-                    max: 4 ,
-                    stepSize: 1
-                }
-            }]
+  def chart_options
+    @options = {
+        class: 'bar-charts',
+        height: 300,
+        scales:{
+          yAxes:[
+            {
+              ticks:{
+                beginAtZero:true
+              }
+            }
+          ]
         }
     }
   end

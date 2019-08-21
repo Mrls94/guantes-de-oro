@@ -13,7 +13,7 @@
     </div>
     <div class="box-body">
       <div class="bar-charts-container-body">
-        <%= bar_chart @ventas_money_data_js, {class: 'bar-charts'} %>
+        <%= bar_chart @ventas_money_data_js, @options %>
       </div>
       <div class="bar-charts-container-body">
         <%= bar_chart @compras_money_data_js, {class: 'bar-charts'} %>
@@ -29,9 +29,11 @@
     </div>
     <div class="box-body">
       <div class="bar-charts-container-body">
+        Ventas
         <%= pie_chart @ventas_count_data_js %>
       </div>
       <div class="bar-charts-container-body">
+        Compras
         <%= pie_chart @compras_count_data_js %>
       </div>
     </div>
