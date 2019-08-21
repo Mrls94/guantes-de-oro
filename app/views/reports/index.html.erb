@@ -1,28 +1,51 @@
-
-<div class="box box-success">
-  <div class="box-header with-border">
-    <h3 class="box-title">
-      Pesos Colombianos Vendidos y Comprados
-    </h3>
+<div class="reports-content">
+  <div class="form-group">
+    <input type="text" class="daterange" value="<%= "#{@start_date} - #{@end_date}" %>" />
+    <%= hidden_field_tag 'start_date', @start_date %>
+    <%= hidden_field_tag 'end_date', @end_date %>
   </div>
-  <div class="box-body">
-    <div class="bar-charts-container">
-      <%= bar_chart @ventas_money_data_js, {class: 'bar-charts'} %>
-      <%= bar_chart @compras_money_data_js, {class: 'bar-charts'} %>
+
+  <div class="box box-success box-charts-container">
+    <div class="box-header with-border">
+      <h3 class="box-title">
+        Pesos Colombianos Vendidos y Comprados
+      </h3>
+    </div>
+    <div class="box-body">
+      <div class="bar-charts-container-body">
+        <%= bar_chart @ventas_money_data_js, {class: 'bar-charts'} %>
+      </div>
+      <div class="bar-charts-container-body">
+        <%= bar_chart @compras_money_data_js, {class: 'bar-charts'} %>
+      </div>
+    </div>
+  </div>
+
+  <div class="box box-success box-charts-container">
+    <div class="box-header with-border">
+      <h3 class="box-title">
+        Ventas y Compras
+      </h3>
+    </div>
+    <div class="box-body">
+      <div class="bar-charts-container-body">
+        <%= pie_chart @ventas_count_data_js %>
+      </div>
+      <div class="bar-charts-container-body">
+        <%= pie_chart @compras_count_data_js %>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="box box-success">
-  <div class="box-header with-border">
-    <h3 class="box-title">
-      Ventas y Compras
-    </h3>
-  </div>
-  <div class="box-body">
-    <div class="bar-charts-container">
-      <%= pie_chart @ventas_count_data_js %>
-      <%= pie_chart @compras_count_data_js %>
-    </div>
-  </div>
-</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('input[class="daterange"]').daterangepicker({
+    locale: {
+      format: 'YYYY-MM-DD'
+    }
+  }, function (startDate, endDate, label){
+    window.location.href = ("<%= reports_path %>" + "?start_date=" + startDate.format('YYYY-MM-DD') + "&end_date=" + endDate.format('YYYY-MM-DD'))
+  });
+});
+</script>

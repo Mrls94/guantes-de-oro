@@ -1,6 +1,8 @@
 class Bill < ApplicationRecord
   belongs_to :currency
   belongs_to :cashier
+
+  include Countable
 end
 
 # == Schema Information

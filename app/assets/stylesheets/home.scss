@@ -169,8 +169,14 @@ $dark-blue: #192C47;
   width: 100%;
 }
 
-.bar-charts-container {
-  // display: flex;
+.reports-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.reports-content .bar-charts-container {
+  min-width: 500px;
+  max-width: 700px;
 }
 
 .bar-charts {

@@ -19,4 +19,6 @@
 //= require bootstrap.min
 //= require admin-lte
 //= require bootstrap-multiselect
+//= require moment
+//= require daterangepicker
 //= require_tree .
