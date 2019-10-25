@@ -80,7 +80,7 @@ class UsersController < ApplicationController
   end
 
   def add_cashiers
-    return if params[:user][:cashier_ids].empty?
+    return unless params[:user][:cashier_ids].try(:any?)
 
     cashier_ids = params[:user][:cashier_ids].map{ |id| id.to_i } - @user.cashiers.pluck(:id)
     @user.cashiers << Cashier.where(id: cashier_ids)

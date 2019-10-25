@@ -2,6 +2,10 @@ es:
   activerecord:
     errors:
       models:
+        user: 
+          attributes:
+            email:
+              taken: "Ya existe un usuario con este correo"
         currency_value:
           attributes:
             value:
