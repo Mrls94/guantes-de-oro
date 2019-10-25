@@ -79,7 +79,11 @@ class DailyMovementsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_daily_movement
-      @daily_movement = current_user.daily_movements.find(params[:id])
+      @daily_movement = if current_user.admin?
+                          DailyMovement.find(params[:id])
+                        else 
+                          current_user.daily_movements.find(params[:id])
+                        end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
