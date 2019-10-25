@@ -14,9 +14,9 @@
  *= require font-awesome
  *= require ionicons
  *= require admin-lte
- *= require bootstrap-multiselect
  *= require datatables/dataTables.bootstrap
  *= require daterangepicker
+ *= require select2
  *= require_tree .
  *= require_self
  */

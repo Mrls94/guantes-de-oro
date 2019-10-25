@@ -58,7 +58,7 @@ gem "execjs"
 
 gem "actionview", ">= 5.2.2.1"
 
-gem 'bootstrap-multiselect-rails'
+gem "select2-rails"
 
 gem "sentry-raven"
 

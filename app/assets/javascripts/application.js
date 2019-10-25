@@ -18,7 +18,7 @@
 //= require jquery_ujs
 //= require bootstrap.min
 //= require admin-lte
-//= require bootstrap-multiselect
+//= require select2
 //= require moment
 //= require daterangepicker
 //= require_tree .
