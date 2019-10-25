@@ -32,11 +32,11 @@
     <div class="box-body">
       <div class="bar-charts-container-body">
         Ventas
-        <%= pie_chart @ventas_count_data_js, @options %>
+        <%= pie_chart @ventas_count_data_js, { class: 'bar-charts', height: 300} %>
       </div>
       <div class="bar-charts-container-body">
         Compras
-        <%= pie_chart @compras_count_data_js, @options %>
+        <%= pie_chart @compras_count_data_js, { class: 'bar-charts', height: 300} %>
       </div>
     </div>
   </div>
@@ -44,6 +44,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+  Chart.defaults.global.tooltipTemplate = "<%= datasetLabel %> - <%= value.toLocaleString() %>"}
   $('input[class="daterange"]').daterangepicker({
     locale: {
       format: 'YYYY-MM-DD'

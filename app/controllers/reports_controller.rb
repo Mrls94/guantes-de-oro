@@ -97,6 +97,11 @@ class ReportsController < ApplicationController
   def chart_options
     @options = {
         class: 'bar-charts',
+        tooltips: {
+          callbacks: {
+            label: "<%= datasetLabel %> - <%= value.toLocaleString() %>"
+          }
+        },
         height: 300,
         scales:{
           yAxes:[
