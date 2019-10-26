@@ -1,13 +1,15 @@
 class Cashier < ApplicationRecord
-  has_many :user_cashiers
+  has_many :user_cashiers, dependent: :destroy
   has_many :users, through: :user_cashiers
-  has_many :daily_movements
-  has_many :currency_values
-  has_many :general_expenses
-  has_one :session
+  has_many :daily_movements, dependent: :destroy
+  has_many :currency_values, dependent: :destroy
+  has_many :general_expenses, dependent: :destroy
+  has_one :session, dependent: :destroy
+  has_many :sign_in_comments, dependent: :destroy
 
   accepts_nested_attributes_for :currency_values#, reject_if: ->(attributes){ attributes['value'] < 0 }
   validates :value_colombia, numericality: { greater_than_or_equal_to: 0, message: "No puede quedar en un numero negativo el monto" }
+  validates :place, presence: true
 
   scope :no_session, lambda {
     where('cashiers.id not in (select cashier_id from sessions)')

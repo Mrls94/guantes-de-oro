@@ -2,6 +2,10 @@ es:
   activerecord:
     errors:
       models:
+        cashier:
+          attributes:
+            place:
+              blank: "El cajero debe tener un lugar"
         user: 
           attributes:
             email:

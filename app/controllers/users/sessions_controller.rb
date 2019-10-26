@@ -48,7 +48,7 @@ class Users::SessionsController < Devise::SessionsController
     cashier_id = params[:session][:cashier_id]
     cashier = Cashier.find(cashier_id) if cashier_id.present?
 
-    session.cashier = cashier
+    session.cashier = cashier if cashier
 
     session.save
 
