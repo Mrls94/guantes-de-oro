@@ -45,7 +45,7 @@ class Users::SessionsController < Devise::SessionsController
     session = Session.new
     session.user = current_user
 
-    cashier_id = params[:session][:cashier_id]
+    cashier_id = params[:session] ? params[:session][:cashier_id] : nil
     cashier = Cashier.find(cashier_id) if cashier_id.present?
 
     session.cashier = cashier if cashier
