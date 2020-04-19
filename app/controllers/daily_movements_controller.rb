@@ -10,9 +10,11 @@ class DailyMovementsController < ApplicationController
   # GET /daily_movements.json
   def index
     @daily_movements = if current_user.admin?
-                         DailyMovement.order(created_at: :desc).paginate(page: params[:page])
+                         @q = DailyMovement.ransack(params[:q])
+                         @q.result.order(created_at: :desc).paginate(page: params[:page])
                        else
-                         current_user.daily_movements.order(created_at: :desc).paginate(page: params[:page])
+                         @q = current_user.daily_movements.ransack(params[:q])
+                         @q.result.order(created_at: :desc).paginate(page: params[:page])
                        end
   end
 
