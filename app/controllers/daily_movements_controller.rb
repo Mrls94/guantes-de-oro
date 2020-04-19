@@ -4,6 +4,8 @@ class DailyMovementsController < ApplicationController
   before_action :check_session
   load_and_authorize_resource
 
+  extend ActionView::Helpers::NumberHelper
+
   # GET /daily_movements
   # GET /daily_movements.json
   def index
@@ -112,8 +114,8 @@ class DailyMovementsController < ApplicationController
           currency_name: cv.currency.name,
           default_buy_rate: cv.currency.default_buy_rate,
           default_sale_rate: cv.currency.default_sale_rate,
-          value: cv.value,
-          compra_trm: compra_trm
+          value: ActiveSupport::NumberHelper::number_to_delimited(cv.value),
+          compra_trm: ActiveSupport::NumberHelper::number_to_delimited(compra_trm)
         }
       end
     end

@@ -18,7 +18,7 @@
         <% @general_expenses.each do |general_expense| %>
           <tr>
             <td><%= general_expense.user.email %></td>
-            <td><%= general_expense.value %></td>
+            <td><%= ActiveSupport::NumberHelper::number_to_delimited(general_expense.value) %></td>
             <td><%= general_expense.description %></td>
             <td><%= link_to 'Show', general_expense %></td>
           </tr>
