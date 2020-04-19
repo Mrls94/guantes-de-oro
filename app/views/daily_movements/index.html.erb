@@ -5,10 +5,10 @@
 <div class="box">
   <%= search_form_for @q do |f| %>
     <%= f.label :cashier_id_eq, 'Buscar en caja: ' %>
-    <%= f.collection_select :cashier_id_eq, Cashier.all, :id, :place %>
+    <%= f.collection_select :cashier_id_eq, Cashier.all, :id, :place, include_blank: true %>
 
     <%= f.label :currency_id_eq, 'Divisa: ' %>
-    <%= f.collection_select :currency_id_eq, Currency.all, :id, :name %>
+    <%= f.collection_select :currency_id_eq, Currency.all, :id, :name, include_blank: true %>
     <%= f.submit %>
   <% end %>
   <div class="box-body table-responsive">
