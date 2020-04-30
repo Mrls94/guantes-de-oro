@@ -89,7 +89,9 @@ class CashiersController < ApplicationController
       :value_colombia,
       currency_values_attributes: [
         :id,
-        :value
+        :value,
+        :default_buy_rate,
+        :default_sale_rate
       ]
     )
   end

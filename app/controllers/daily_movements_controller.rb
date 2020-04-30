@@ -105,15 +105,15 @@ class DailyMovementsController < ApplicationController
       @currency_info = current_user.session.cashier.currency_values.map do |cv|
         daily_movement_compras = current_user.session.cashier.daily_movements.where("action = 0 AND currency_id = #{cv.currency.id} AND created_at > '#{Time.zone.now.beginning_of_day}'")
 
-        array = [cv.currency.default_buy_rate]
+        array = [cv.default_buy_rate]
         array << daily_movement_compras.pluck(:exchange_rate)
         array.flatten!
         compra_trm = (array.reduce(:+) / array.size.to_f).ceil
         {
           currency_id: cv.currency.id,
           currency_name: cv.currency.name,
-          default_buy_rate: cv.currency.default_buy_rate,
-          default_sale_rate: cv.currency.default_sale_rate,
+          default_buy_rate: cv.default_buy_rate,
+          default_sale_rate: cv.default_sale_rate,
           value: ActiveSupport::NumberHelper::number_to_delimited(cv.value),
           compra_trm: ActiveSupport::NumberHelper::number_to_delimited(compra_trm)
         }
