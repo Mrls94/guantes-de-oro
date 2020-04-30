@@ -105,12 +105,10 @@ class DailyMovementsController < ApplicationController
       @currency_info = current_user.session.cashier.currency_values.map do |cv|
         daily_movement_compras = current_user.session.cashier.daily_movements.where("action = 0 AND currency_id = #{cv.currency.id} AND created_at > '#{Time.zone.now.beginning_of_day}'")
 
-        compra_trm = if daily_movement_compras.any?
-                       array = daily_movement_compras.pluck(:exchange_rate)
-                       (array.reduce(:+) / array.size.to_f).ceil
-                     else
-                       'No se han hecho compras'
-                     end
+        array = [cv.currency.default_buy_rate]
+        array << daily_movement_compras.pluck(:exchange_rate)
+        array.flatten!
+        compra_trm = (array.reduce(:+) / array.size.to_f).ceil
         {
           currency_id: cv.currency.id,
           currency_name: cv.currency.name,
