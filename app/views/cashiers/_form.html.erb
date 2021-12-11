@@ -44,27 +44,29 @@
   </div>
 </div>
 
-<div class="box box-success box-form-content">
-  <div class="box-header with-border">
-    <h3 class="box-title">Valores en Caja</h3>
-  </div>
+<% if @cashier.persisted? %>
+  <div class="box box-success box-form-content">
+    <div class="box-header with-border">
+      <h3 class="box-title">Valores en Caja</h3>
+    </div>
 
-  <div class="box-body">
-    <%= form_with(model: cashier, local: true) do |form| %>
-      <div class="box-body">
-        <div class="field form-group">
-          <%= form.label :value_colombia, "Peso Colombiano" %>
-          <%= form.number_field :value_colombia, {class: "form-control"} %>
+    <div class="box-body">
+      <%= form_with(model: cashier, local: true) do |form| %>
+        <div class="box-body">
+          <div class="field form-group">
+            <%= form.label :value_colombia, "Peso Colombiano" %>
+            <%= form.number_field :value_colombia, {class: "form-control"} %>
+          </div>
+
+          <%= form.fields_for :currency_values, cashier.currency_values do |f| %>
+            <%= render 'currency_values', f: f %>
+          <% end %>
         </div>
 
-        <%= form.fields_for :currency_values, cashier.currency_values do |f| %>
-          <%= render 'currency_values', f: f %>
-        <% end %>
+      <div class="actions">
+        <%= form.submit "Ingresar Valores", {class: "btn btn-primary"} %>
       </div>
-
-    <div class="actions">
-      <%= form.submit "Ingresar Valores", {class: "btn btn-primary"} %>
+      <% end %>
     </div>
-    <% end %>
   </div>
-</div>
+<% end %>

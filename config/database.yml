@@ -13,7 +13,7 @@ default: &default
 development:
   <<: *default
   database: guantes-de-oro-test-db
-  username: sebas
+  username: sebastian
   password: 12345
 
 staging:
@@ -29,7 +29,7 @@ staging:
 test:
   <<: *default
   database: guantes-de-oro-test-db-test
-  username: sebas
+  username: sebastian
   password: 12345
 
 production:
